@@ -1,0 +1,258 @@
+{
+  "checks": {
+    "real_worker_initialization": {
+      "passed": true,
+      "state": {
+        "ready": true,
+        "running": true,
+        "error": null,
+        "sessionId": "browser-1792734407268",
+        "field": "vorticity",
+        "theme": "dark",
+        "draft": {
+          "U": 0.6,
+          "fn": 0.18,
+          "zeta": 0.01,
+          "massRatio": 10,
+          "fixed": false,
+          "Sc": 0.9869604401089359
+        },
+        "historyLength": 351,
+        "current": {
+          "step": 1755,
+          "t": 15.356250000000001,
+          "y": -0.00017863868522808278,
+          "U": 0.6,
+          "fn": 0.18,
+          "zeta": 0.01,
+          "massRatio": 10,
+          "Sc": 0.9869604401089359,
+          "fixed": false
+        },
+        "structureDisplacementScale": 10,
+        "chartDraws": 24,
+        "advancedOpen": false,
+        "fieldShape": [
+          160,
+          80
+        ]
+      }
+    },
+    "compact_default": {
+      "passed": true
+    },
+    "closed_charts_not_drawn": {
+      "passed": true,
+      "hidden": [
+        {
+          "id": "browser-cp",
+          "points": null
+        },
+        {
+          "id": "browser-wind-history",
+          "points": null
+        },
+        {
+          "id": "browser-lift-history",
+          "points": null
+        }
+      ]
+    },
+    "pause_freezes_solver": {
+      "passed": true,
+      "paused": 1805,
+      "after": 1805
+    },
+    "touch_wind_resumes_same_state": {
+      "passed": true,
+      "before": {
+        "step": 1805,
+        "t": 15.793750000000001,
+        "y": -0.0002640387310145912,
+        "U": 0.6,
+        "fn": 0.18,
+        "zeta": 0.01,
+        "massRatio": 10,
+        "Sc": 0.9869604401089359,
+        "fixed": false
+      },
+      "after": {
+        "step": 1880,
+        "t": 16.450000000000003,
+        "y": -0.00030296770635153766,
+        "U": 0.7312500000000022,
+        "fn": 0.18,
+        "zeta": 0.01,
+        "massRatio": 10,
+        "Sc": 0.9869604401089359,
+        "fixed": false
+      },
+      "target": 1.05
+    },
+    "frequency_damping_live": {
+      "passed": true,
+      "current": {
+        "step": 2005,
+        "t": 17.543750000000003,
+        "y": 1.6294002914577525e-05,
+        "U": 0.9500000000000058,
+        "fn": 0.2,
+        "zeta": 0.05,
+        "massRatio": 10,
+        "Sc": 4.93480220054468,
+        "fixed": false
+      }
+    },
+    "mass_scruton_consistent": {
+      "passed": true,
+      "Sc": 3.94778417604357,
+      "zeta": 0.019999708274061282,
+      "k": 24.805021344239854,
+      "c": 0.7895568352087139
+    },
+    "fixed_locks_actual_y": {
+      "passed": true,
+      "y": 0.0007027489114426726,
+      "afterY": 0.0007027489114426726
+    },
+    "release_retains_session": {
+      "passed": true
+    },
+    "velocity_light_mode": {
+      "passed": true
+    },
+    "cp_actual_samples": {
+      "passed": true,
+      "sampleCount": 24,
+      "plotCount": "25",
+      "note": "Cp=(p−pRef)/(½ρU(t)²)；pRef：入口截面平均静压。粗网格外侧节点近壁取样，并非精确壁面压力。0°迎风，90°上方，180°背风，270°下方。颜色固定 −3～1.5，曲线保留原值。"
+    },
+    "export_downloads": {
+      "passed": true,
+      "json": "VIV_browser_experiment.json",
+      "csv": "VIV_browser_history.csv"
+    },
+    "expanded_charts_draw": {
+      "passed": true
+    },
+    "reset_clears_history_and_note": {
+      "passed": true,
+      "state": {
+        "ready": true,
+        "running": false,
+        "error": null,
+        "sessionId": "browser-1792734415161",
+        "field": "surface",
+        "theme": "light",
+        "draft": {
+          "U": 1.05,
+          "fn": 0.2,
+          "zeta": 0.019999708274061282,
+          "massRatio": 20,
+          "fixed": false,
+          "Sc": 3.94778417604357
+        },
+        "historyLength": 0,
+        "current": {
+          "step": 0,
+          "t": 0,
+          "y": 0,
+          "U": 1.05,
+          "fn": 0.2,
+          "zeta": 0.019999708274061282,
+          "massRatio": 20,
+          "Sc": 3.94778417604357,
+          "fixed": false
+        },
+        "structureDisplacementScale": 10,
+        "chartDraws": 55,
+        "advancedOpen": true,
+        "fieldShape": [
+          160,
+          80
+        ]
+      },
+      "note": "初始流场需要发展，响应会随计算逐步建立。"
+    },
+    "touch_layout_320": {
+      "passed": true,
+      "layout": {
+        "width": 320,
+        "scroll": 320,
+        "touch": 1,
+        "canvas": {
+          "css": 296,
+          "px": 592
+        },
+        "windBottom": 466.984375
+      }
+    },
+    "touch_layout_360": {
+      "passed": true,
+      "layout": {
+        "width": 360,
+        "scroll": 360,
+        "touch": 1,
+        "canvas": {
+          "css": 336,
+          "px": 672
+        },
+        "windBottom": 466.984375
+      }
+    },
+    "touch_layout_390": {
+      "passed": true,
+      "layout": {
+        "width": 390,
+        "scroll": 390,
+        "touch": 1,
+        "canvas": {
+          "css": 360,
+          "px": 720
+        },
+        "windBottom": 491.1875
+      }
+    },
+    "touch_layout_768": {
+      "passed": true,
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "touch": 1,
+        "canvas": {
+          "css": 718,
+          "px": 1436
+        },
+        "windBottom": 604.578125
+      }
+    },
+    "reset_starts_new_flow": {
+      "passed": true
+    },
+    "no_browser_errors": {
+      "passed": true,
+      "errors": [],
+      "badRequests": []
+    }
+  },
+  "screenshots": [
+    "browser-mobile-cp.png",
+    "browser-touch-320.png",
+    "browser-touch-360.png",
+    "browser-touch-390.png",
+    "browser-touch-768.png"
+  ],
+  "errors": [],
+  "badRequests": [],
+  "passed": true,
+  "sourceHashes": {
+    "browser-engine.js": "8943c17db66af099b456ae5ef5f5ef78f4f91d7b59efda5df6e3574ee9a3237e",
+    "browser-flow.js": "3088a8be07a0588a1cc7b84fd3e842b9b703bdc54f888a1885c64568e8f74588",
+    "browser-panel.html": "f1069dcec14a57312523656587a64204fd18c8163b50bfa106e490a7d52e17d9",
+    "browser-spectrum.js": "23fc8e5af540aa38bb07ed6b0c58d87acbf8607eea9d2aa3d406d15aae60bee8",
+    "browser-view.js": "79cd03552bcc8cd09d54a570a92d19d69df350524e9d8b3910d16399d550356f",
+    "browser-worker.js": "71469cf5945b7a626847bd6c88bb215ac44442f1a3894da9182902665ae84af5",
+    "browser.css": "09e7027dc1e044cabd7602c3c218cff1e8601bf235baeb14bdc155382d6a484b",
+    "index.html": "3d7536231e0f242844a6a5a50d418f63f151fc5f2818fa5532798701c50b2377"
+  }
+}

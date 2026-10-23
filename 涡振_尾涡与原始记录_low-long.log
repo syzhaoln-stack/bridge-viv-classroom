@@ -1,0 +1,123 @@
+LOW-SPEED ALE CONTINUATION — COMPLETION RECORD
+Provenance: assembled after completion from the real saved metadata and final progress JSON,
+and the final console line returned by the actual calculation. This is not a full raw
+console transcript. No progress rows, simulation states or timestamps are fabricated.
+
+Executed command (from the course workspace root):
+python -X utf8 advanced-wind-course/viv/ale/continue_ale.py --until 320 --name low-long
+Execution session 94215 completed with exit code 0.
+
+Captured actual final console line:
+low-long t=320.00 y=+0.013756 CL=+0.23859 J=0.98928 elapsed=720.1s
+
+Timing: metadata continuationSeconds records stepping time near the final checkpoint;
+progress elapsedSeconds includes the final file save and completion diagnostics.
+
+SAVED RUN METADATA
+{
+  "name": "low-long",
+  "U": 0.7,
+  "nu": 0.01,
+  "fn": 0.16,
+  "mass_ratio": 10.0,
+  "zeta": 0.01,
+  "duration": 320.0,
+  "dt": 0.05,
+  "frame_interval": 0.5,
+  "fixed": false,
+  "fine": false,
+  "mass": 7.853981633974483,
+  "k": 7.937606830156754,
+  "c": 0.15791367041742974,
+  "rho": 1.0,
+  "D": 1.0,
+  "Re": 70.0,
+  "seconds": 1551.0191749000005,
+  "minAreaRatio": 0.987594117783587,
+  "maxWeakDivergence": 1.084614169311049e-14,
+  "maxFluidResidual": 1.4210854715202004e-14,
+  "maxOuterDisplacement": 0.0,
+  "maxBodyError": 0.0,
+  "meshMapping": "x=X; y=Y+h(X,Y)*body_y; reference P1 harmonic h with body=1, outer=0",
+  "solver": "scikit-fem P2/P1 Taylor-Hood ALE, implicit Euler, Oseen, explicit partitioned SDOF",
+  "units": "Common nondimensional scales D=1, Uref=1, rho=1. All case times use D/Uref; y is y/D.",
+  "historyColumns": [
+    "t",
+    "y",
+    "v",
+    "a",
+    "fx",
+    "fy",
+    "CL",
+    "CD",
+    "minAreaRatio",
+    "weakDivergence",
+    "fluidResidual"
+  ],
+  "continuationSeconds": 720.1008261000006,
+  "continuationSource": "D:\\claude_work\\20260908_桥梁抗风课程备课\\advanced-wind-course\\viv\\ale\\runs\\low.npz",
+  "continuationSourceSha256": "2412406187cd0eeb0ffd71a1317b896477681bf8ae6deb172b1a93ddc0d1bd82",
+  "continuationSourceTime": 140.0,
+  "continuationTargetTime": 320.0,
+  "continuationQuadratureOrder": 4,
+  "continuationDescription": "Exact saved final P2 velocity, P1 pressure, body y/v and CFD force; no new initial perturbation or restart.",
+  "originalNodeFrameEvidence": "Earlier coordinates reconstructed exactly from saved linear harmonic mapping; continuation coordinates saved directly.",
+  "error": null
+}
+
+SAVED FINAL PROGRESS
+{
+  "time": 320.0,
+  "target": 320.0,
+  "sourceTime": 140.0,
+  "elapsedSeconds": 723.8169636000002,
+  "stepsAdded": 3600,
+  "error": null,
+  "windows": [
+    {
+      "from": 240.05,
+      "to": 280.0,
+      "samples": 800,
+      "yRms": 0.011194350653473238,
+      "yHalfRange": 0.015869168555720025,
+      "CLRms": 0.18559386333412164,
+      "CLHalfRange": 0.26307016446180287
+    },
+    {
+      "from": 280.05,
+      "to": 320.0,
+      "samples": 800,
+      "yRms": 0.01119413152375529,
+      "yHalfRange": 0.015869444945524155,
+      "CLRms": 0.18560218195959224,
+      "CLHalfRange": 0.2630748838551107
+    }
+  ],
+  "interpretation": "Two finite 40-unit windows; small change is a development diagnostic, not proof of a steady limit cycle.",
+  "relativeChanges": {
+    "yRms": -1.957502714812847e-05,
+    "CLRms": 4.482166231769879e-05,
+    "yHalfRange": 1.7416779156382755e-05,
+    "CLHalfRange": 1.793967520973807e-05
+  }
+}
+
+INDEPENDENT VERIFICATION
+{
+  "restartPassed": true,
+  "restartMaximumDifferences": {
+    "history": 0.0,
+    "uP2Frames": 0.0,
+    "pFrames": 0.0,
+    "yFrames": 0.0,
+    "vFrames": 0.0,
+    "uVertexFrames": 0.0,
+    "wFrames": 0.0,
+    "vorticityFrames": 0.0
+  },
+  "developmentPassed": true,
+  "originalSourceUnchanged": true,
+  "independentAuditPassed": true,
+  "auditPath": "live_qa/low-long-audit.json",
+  "developmentPath": "live_qa/low-long-development.json"
+}

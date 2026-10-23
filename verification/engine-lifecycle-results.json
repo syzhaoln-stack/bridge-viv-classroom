@@ -1,0 +1,62 @@
+{
+  "scope": "Actual browser-engine.js protocol in a Node VM with a deterministic fake Worker; does not validate browser rendering or CFD.",
+  "sourceSha256": "8943c17db66af099b456ae5ef5f5ef78f4f91d7b59efda5df6e3574ee9a3237e",
+  "passed": true,
+  "checks": [
+    {
+      "name": "initialization sends current parameters",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion initial session is paused",
+      "passed": true
+    },
+    {
+      "name": "run accepts provided Worker history without replacing it",
+      "passed": true
+    },
+    {
+      "name": "paused parameter edits do not send run/reset",
+      "passed": true
+    },
+    {
+      "name": "worker failure terminates worker and stops UI",
+      "passed": true
+    },
+    {
+      "name": "error reset creates new worker using latest parameters",
+      "passed": true
+    },
+    {
+      "name": "new ready clears history and error",
+      "passed": true
+    },
+    {
+      "name": "visibility hidden pauses worker",
+      "passed": true
+    },
+    {
+      "name": "normal visibility restoration resumes desired run",
+      "passed": true
+    },
+    {
+      "name": "reset suppresses old frames until ready",
+      "passed": true
+    }
+  ],
+  "observations": [
+    {
+      "name": "initially hidden document resumes on first visibility",
+      "passed": true
+    },
+    {
+      "name": "source-load failure reset preserves actionable error or retries loading",
+      "passed": false,
+      "state": {
+        "ready": false,
+        "error": null,
+        "workers": 0
+      }
+    }
+  ]
+}

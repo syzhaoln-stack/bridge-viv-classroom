@@ -1,0 +1,284 @@
+{
+  "spectrumSha256": "23fc8e5af540aa38bb07ed6b0c58d87acbf8607eea9d2aa3d406d15aae60bee8",
+  "method": "Production browser-spectrum function, applied directly to synthetic signals and independent real calibration histories",
+  "cases": [
+    {
+      "name": "known .18 sinusoid",
+      "value": {
+        "frequency": 0.17578125,
+        "resolution": 0.024968789013732832,
+        "windowStart": 0,
+        "windowEnd": 40,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 801
+      },
+      "expected": 0.18,
+      "passed": true
+    },
+    {
+      "name": "zero signal",
+      "value": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "name": "pure linear trend",
+      "value": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "name": "weak vibration",
+      "value": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "name": "short window",
+      "value": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "name": "high-frequency global peak is not hidden",
+      "value": {
+        "frequency": 1.71875,
+        "resolution": 0.024968789013732832,
+        "windowStart": 0,
+        "windowEnd": 40,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 801
+      },
+      "expected": 1.72,
+      "passed": true
+    }
+  ],
+  "actual": [
+    {
+      "name": "low hold",
+      "window": [
+        140.07000000000002,
+        179.91750000000002
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.09704968944099379,
+        "resolution": 0.024969568338587347,
+        "windowStart": 140.07000000000002,
+        "windowEnd": 179.91750000000002,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fProbe": {
+        "frequency": 0.09704968944099379,
+        "resolution": 0.024969568338587347,
+        "windowStart": 140.07000000000002,
+        "windowEnd": 179.91750000000002,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fY": {
+        "frequency": 0.09704968944099379,
+        "resolution": 0.024969568338587347,
+        "windowStart": 140.07000000000002,
+        "windowEnd": 179.91750000000002,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      }
+    },
+    {
+      "name": "low to near ramp",
+      "window": [
+        200.12125000000003,
+        239.96875000000003
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.13586956521739132,
+        "resolution": 0.024969568338587347,
+        "windowStart": 200.12125000000003,
+        "windowEnd": 239.96875000000003,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fProbe": {
+        "frequency": 0.13586956521739132,
+        "resolution": 0.024969568338587347,
+        "windowStart": 200.12125000000003,
+        "windowEnd": 239.96875000000003,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fY": {
+        "frequency": 0.13586956521739132,
+        "resolution": 0.024969568338587347,
+        "windowStart": 200.12125000000003,
+        "windowEnd": 239.96875000000003,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      }
+    },
+    {
+      "name": "near hold",
+      "window": [
+        300.16875000000005,
+        339.81500000000005
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.17468944099378877,
+        "resolution": 0.025095677269590305,
+        "windowStart": 300.16875000000005,
+        "windowEnd": 339.81500000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 198
+      },
+      "fProbe": {
+        "frequency": 0.17468944099378877,
+        "resolution": 0.025095677269590305,
+        "windowStart": 300.16875000000005,
+        "windowEnd": 339.81500000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 198
+      },
+      "fY": {
+        "frequency": 0.17468944099378877,
+        "resolution": 0.025095677269590305,
+        "windowStart": 300.16875000000005,
+        "windowEnd": 339.81500000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 198
+      }
+    },
+    {
+      "name": "near to high ramp",
+      "window": [
+        360.12375000000003,
+        399.97125000000005
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.23291925465838495,
+        "resolution": 0.02496956833858733,
+        "windowStart": 360.12375000000003,
+        "windowEnd": 399.97125000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fProbe": {
+        "frequency": 0.23291925465838495,
+        "resolution": 0.02496956833858733,
+        "windowStart": 360.12375000000003,
+        "windowEnd": 399.97125000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fY": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 360.12375000000003,
+        "windowEnd": 399.97125000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      }
+    },
+    {
+      "name": "high hold",
+      "window": [
+        460.17125000000004,
+        499.81750000000005
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.27173913043478254,
+        "resolution": 0.025095677269590305,
+        "windowStart": 460.17125000000004,
+        "windowEnd": 499.81750000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 198
+      },
+      "fProbe": {
+        "frequency": 0.27173913043478254,
+        "resolution": 0.025095677269590305,
+        "windowStart": 460.17125000000004,
+        "windowEnd": 499.81750000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 198
+      },
+      "fY": {
+        "frequency": 0.27173913043478254,
+        "resolution": 0.025095677269590305,
+        "windowStart": 460.17125000000004,
+        "windowEnd": 499.81750000000005,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 198
+      }
+    },
+    {
+      "name": "baseline damping branch",
+      "window": [
+        380.0475,
+        419.89500000000004
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fProbe": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fY": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      }
+    },
+    {
+      "name": "larger damping branch",
+      "window": [
+        380.0475,
+        419.89500000000004
+      ],
+      "omittedNonuniformTrailingSamples": 1,
+      "fLift": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fProbe": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      },
+      "fY": {
+        "frequency": 0.17468944099378872,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+        "samples": 199
+      }
+    }
+  ],
+  "passed": true,
+  "interpretation": "Linear detrend, Hann window, full non-DC FFT peak. Zero padding helps locate a peak but does not improve true frequency resolution. No fn-guided peak selection."
+}

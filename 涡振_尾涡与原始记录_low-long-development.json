@@ -1,0 +1,190 @@
+{
+  "passed": true,
+  "completed": true,
+  "sourceTime": 140.0,
+  "finalTime": 320.0,
+  "originalSourceUnchanged": true,
+  "originalPrefixMaximumDifferences": {
+    "history": 0.0,
+    "frameTime": 0.0,
+    "yFrames": 0.0,
+    "vFrames": 0.0,
+    "uVertexFrames": 0.0,
+    "pFrames": 0.0,
+    "wFrames": 0.0,
+    "vorticityFrames": 0.0,
+    "uP2Frames": 0.0
+  },
+  "firstContinuedTimeGap": 0.05000000000001137,
+  "dt": 0.05,
+  "allNumericArraysFinite": true,
+  "developmentWindows": [
+    {
+      "start": 60.050000000000004,
+      "end": 100.0,
+      "rmsY": 0.0009240979350706234,
+      "halfRangeY": 0.002421256899598815,
+      "rmsCL": 0.019166537170234955,
+      "halfRangeCL": 0.04832197542529018
+    },
+    {
+      "start": 100.05000000000001,
+      "end": 140.0,
+      "rmsY": 0.00594883355924502,
+      "halfRangeY": 0.012194665537688797,
+      "rmsCL": 0.10469483850215362,
+      "halfRangeCL": 0.2075089870726593
+    },
+    {
+      "start": 140.05,
+      "end": 180.0,
+      "rmsY": 0.010572237323199266,
+      "halfRangeY": 0.015663142683855436,
+      "rmsCL": 0.17627065259517033,
+      "halfRangeCL": 0.2599347493253761
+    },
+    {
+      "start": 180.05,
+      "end": 220.0,
+      "rmsY": 0.011159261106358554,
+      "halfRangeY": 0.01585762143261825,
+      "rmsCL": 0.18507340529243,
+      "halfRangeCL": 0.2629098934955272
+    },
+    {
+      "start": 220.05,
+      "end": 260.0,
+      "rmsY": 0.011189631619264744,
+      "halfRangeY": 0.015868470024440272,
+      "rmsCL": 0.1855100329277994,
+      "halfRangeCL": 0.2630558823839355
+    },
+    {
+      "start": 260.05,
+      "end": 300.0,
+      "rmsY": 0.011191000373994548,
+      "halfRangeY": 0.015869437891019654,
+      "rmsCL": 0.1855413189613745,
+      "halfRangeCL": 0.26307369506057715
+    },
+    {
+      "start": 280.05,
+      "end": 320.0,
+      "rmsY": 0.01119413152375529,
+      "halfRangeY": 0.015869444945524155,
+      "rmsCL": 0.18560218195959224,
+      "halfRangeCL": 0.2630748838551107
+    }
+  ],
+  "lastTwoFortyWindows": [
+    {
+      "start": 240.05,
+      "end": 280.0,
+      "rmsY": 0.011194350653473238,
+      "halfRangeY": 0.015869168555720025,
+      "rmsCL": 0.18559386333412164,
+      "halfRangeCL": 0.26307016446180287
+    },
+    {
+      "start": 280.05,
+      "end": 320.0,
+      "rmsY": 0.01119413152375529,
+      "halfRangeY": 0.015869444945524155,
+      "rmsCL": 0.18560218195959224,
+      "halfRangeCL": 0.2630748838551107
+    }
+  ],
+  "lastWindowRelativeChanges": {
+    "rmsY": -1.957502714812847e-05,
+    "halfRangeY": 1.7416779156382755e-05,
+    "rmsCL": 4.482166231769879e-05,
+    "halfRangeCL": 1.793967520973807e-05
+  },
+  "lastEightyUnitExtrema": {
+    "positivePeaks": [
+      [
+        249.3,
+        0.015813819447950832
+      ],
+      [
+        258.2,
+        0.015813494852971406
+      ],
+      [
+        267.15000000000003,
+        0.01581521651051034
+      ],
+      [
+        276.1,
+        0.0158135786011502
+      ],
+      [
+        285.0,
+        0.01581475352249066
+      ],
+      [
+        293.95,
+        0.015815015110225525
+      ],
+      [
+        302.85,
+        0.01581345910226432
+      ],
+      [
+        311.8,
+        0.015815230619519338
+      ]
+    ],
+    "negativePeaks": [
+      [
+        244.8,
+        -0.015919936228378916
+      ],
+      [
+        253.75,
+        -0.01592312060092971
+      ],
+      [
+        262.7,
+        -0.015922954990531014
+      ],
+      [
+        271.6,
+        -0.015922665492832777
+      ],
+      [
+        280.55,
+        -0.015923561726700654
+      ],
+      [
+        289.5,
+        -0.015921580329829862
+      ],
+      [
+        298.40000000000003,
+        -0.01592365927152897
+      ],
+      [
+        307.35,
+        -0.015923028303013596
+      ],
+      [
+        316.25,
+        -0.015922700276580867
+      ]
+    ]
+  },
+  "lastEightyUnitFrequency": {
+    "lift": {
+      "frequency": 0.1125,
+      "resolution": 0.0125,
+      "windowLength": 80.0
+    },
+    "response": {
+      "frequency": 0.1125,
+      "resolution": 0.0125,
+      "windowLength": 80.0
+    }
+  },
+  "interpretation": "Small changes between late windows and repeated extrema indicate a developed trajectory in this discrete model; they do not establish grid/time convergence or a universal steady-state criterion."
+}

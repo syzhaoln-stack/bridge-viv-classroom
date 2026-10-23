@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "sourceCheckpointTime": 139.5,
+  "continuedTo": 140.0,
+  "comparedToOriginalStoredSteps": 10,
+  "maximumDifferences": {
+    "history": 0.0,
+    "uP2Frames": 0.0,
+    "pFrames": 0.0,
+    "yFrames": 0.0,
+    "vFrames": 0.0,
+    "uVertexFrames": 0.0,
+    "wFrames": 0.0,
+    "vorticityFrames": 0.0
+  },
+  "meaning": "Continuation exactly reproduces an already saved final segment with original quadrature and parameter values."
+}

@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "checks": {
+    "knownFrequencyIndependentOfFn": {
+      "passed": true,
+      "baseline": {
+        "lift": 0.12499999999999822,
+        "probe": 0.12499999999999822,
+        "response": 0.12499999999999822,
+        "resolution": 0.024999999999999644,
+        "windowLength": 39.95,
+        "windowStart": 0.05,
+        "windowEnd": 40.0,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      },
+      "changedFn": {
+        "lift": 0.12499999999999822,
+        "probe": 0.12499999999999822,
+        "response": 0.12499999999999822,
+        "resolution": 0.024999999999999644,
+        "windowLength": 39.95,
+        "windowStart": 0.05,
+        "windowEnd": 40.0,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      }
+    },
+    "zeroSignal": {
+      "passed": true,
+      "result": {
+        "lift": null,
+        "probe": null,
+        "response": null,
+        "resolution": 0.024999999999999644,
+        "windowLength": 39.95,
+        "windowStart": 0.05,
+        "windowEnd": 40.0,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      }
+    },
+    "pureTrend": {
+      "passed": true,
+      "result": {
+        "lift": null,
+        "probe": null,
+        "response": null,
+        "resolution": 0.024999999999999644,
+        "windowLength": 39.95,
+        "windowStart": 0.05,
+        "windowEnd": 40.0,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      }
+    },
+    "subthresholdOscillationWithTrend": {
+      "passed": true,
+      "result": {
+        "lift": null,
+        "probe": null,
+        "response": null,
+        "resolution": 0.024999999999999644,
+        "windowLength": 39.95,
+        "windowStart": 0.05,
+        "windowEnd": 40.0,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      }
+    },
+    "lessThanTwoPeriods": {
+      "passed": true,
+      "result": {
+        "lift": null,
+        "probe": null,
+        "response": null,
+        "resolution": 0.054054054054054,
+        "windowLength": 18.45,
+        "windowStart": 0.05,
+        "windowEnd": 18.5,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      }
+    },
+    "outsideSupportedBand": {
+      "passed": true,
+      "result": {
+        "lift": null,
+        "probe": null,
+        "response": null,
+        "resolution": 0.024999999999999644,
+        "windowLength": 39.95,
+        "windowStart": 0.05,
+        "windowEnd": 40.0,
+        "status": "finite-window",
+        "windRange": [
+          0.6,
+          0.6
+        ],
+        "method": "Linearly detrended Hann FFT; full-spectrum peak, at least 2.5 periods; accepted band .04\u2013.65; transient window, not steady lock-in proof"
+      }
+    },
+    "freshParameterWindow": {
+      "passed": true,
+      "result": {
+        "lift": null,
+        "probe": null,
+        "response": null,
+        "resolution": null,
+        "windowLength": 5.0,
+        "status": "collecting",
+        "method": "Hann-window FFT, no frequency clamping"
+      }
+    }
+  },
+  "scope": "Known-signal rejection and invariance checks; spectral resolution remains finite and sweeps are nonstationary."
+}

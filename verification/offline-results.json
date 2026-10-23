@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "before": {
+    "step": 1015,
+    "t": 8.881250000000001,
+    "running": false,
+    "ready": true,
+    "error": null,
+    "history": 203,
+    "solver": "D2Q9 BGK + Guo inertial source + momentum exchange + implicit-midpoint SDOF",
+    "dt": 0.00875
+  },
+  "after": {
+    "step": 1330,
+    "t": 11.637500000000001,
+    "U": 1.1,
+    "history": 266,
+    "running": true,
+    "finite": true,
+    "width": 390,
+    "scroll": 390
+  },
+  "errors": [],
+  "requests": []
+}

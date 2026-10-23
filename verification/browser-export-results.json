@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "CpMaxError": 0.0,
+  "fieldShape": [
+    160,
+    80
+  ],
+  "historyRows": 637,
+  "csvRows": 637,
+  "events": 9,
+  "rawArraysFinite": true,
+  "method": "Uniform body-attached lattice, not locally deforming ALE; transverse-periodic boundary; inlet/outlet non-equilibrium extrapolation",
+  "referenceVelocityLattice": 0.07,
+  "limits": {
+    "U": [
+      0.5,
+      1.5
+    ],
+    "fn": [
+      0.08,
+      0.3
+    ],
+    "zeta": [
+      0.002,
+      0.15
+    ],
+    "massRatio": [
+      10,
+      60
+    ]
+  },
+  "schema": "viv-browser-experiment-v1"
+}

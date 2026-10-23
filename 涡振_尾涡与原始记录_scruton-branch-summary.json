@@ -1,0 +1,65 @@
+{
+  "completed": true,
+  "seconds": 124.56732639999973,
+  "sameInitialField": true,
+  "sameWind": true,
+  "sameMassAndNaturalFrequency": true,
+  "branches": [
+    {
+      "branch": "baseline",
+      "initial": {
+        "time": 140.0,
+        "U": 1.10625,
+        "y": 0.2197083218539122,
+        "v": -0.03819186432476681,
+        "fy": -0.1732286405865633,
+        "mass": 7.853981633974483,
+        "fn": 0.16,
+        "zeta": 0.01,
+        "Sc": 0.9869604401089359,
+        "k": 7.937606830156754,
+        "c": 0.15791367041742974
+      },
+      "steps": 800,
+      "window": [
+        160.0,
+        180.0
+      ],
+      "halfRangeY": 0.26305523908574835,
+      "rmsYAboutMean": 0.18679986958306166,
+      "rmsCLAboutMean": 0.23562129019351238,
+      "minJAllSteps": 0.8000780017581007,
+      "maxWeakDivergence": 1.9735948986188134e-14,
+      "interpretation": "Finite continuation after a damping parameter change, not a converged steady response."
+    },
+    {
+      "branch": "largerSc",
+      "initial": {
+        "time": 140.0,
+        "U": 1.10625,
+        "y": 0.2197083218539122,
+        "v": -0.03819186432476681,
+        "fy": -0.1732286405865633,
+        "mass": 7.853981633974483,
+        "fn": 0.16,
+        "zeta": 0.05,
+        "Sc": 4.93480220054468,
+        "k": 7.937606830156754,
+        "c": 0.7895683520871487
+      },
+      "steps": 800,
+      "window": [
+        160.0,
+        180.0
+      ],
+      "halfRangeY": 0.15212650513134193,
+      "rmsYAboutMean": 0.1030359197400158,
+      "rmsCLAboutMean": 0.2667295425023778,
+      "minJAllSteps": 0.8349870146662899,
+      "maxWeakDivergence": 1.4926428149042437e-14,
+      "interpretation": "Finite continuation after a damping parameter change, not a converged steady response."
+    }
+  ],
+  "largeScToBaselineObservedAmplitudeRatio": 0.578306311860807,
+  "scope": "Live-model QA branches cloned at t=140; no prerecorded states are used in the application. No expected amplitude ordering is asserted."
+}

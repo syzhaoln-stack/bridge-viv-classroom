@@ -1,0 +1,39 @@
+<main id="browser-lab" class="browser-lab">
+  <header class="browser-heading"><div><p class="browser-eyebrow">桥梁抗风 · 涡激振动</p><h1>风变了，结构怎样振动？</h1></div><span id="browser-badge" class="browser-badge">准备中</span></header>
+  <p id="browser-status" class="browser-status" role="status">正在准备浏览器内的流场计算…</p>
+
+  <section class="browser-experiment" aria-label="实时涡振实验">
+    <div class="browser-field-wrap"><canvas id="browser-field" aria-label="当前计算的涡量流场，圆柱位移按实际比例显示"></canvas><div class="browser-field-key"><span id="browser-field-name">涡量 ωD/Uref</span><span class="browser-colorbar" aria-hidden="true"></span><span id="browser-scale-label">−8　0　+8</span><span class="browser-scale-note">固定色标 · 实际位移</span></div></div>
+    <div class="browser-runbar"><button id="browser-run" class="browser-primary" disabled>开始实验</button><span id="browser-clock">t* = 0</span><span id="browser-stage">尾流将逐步发展</span></div>
+    <div class="browser-wind-control"><label for="browser-wind"><span>拖动风速 <small>U / Uref</small></span><output id="browser-wind-out">0.60</output></label><input id="browser-wind" type="range" min="0.5" max="1.5" step="0.01" value="0.6" disabled><div class="browser-range-caption"><span>低风速</span><span>实际入口 <b id="browser-actual-u">0.60</b></span><span>高风速</span></div></div>
+  </section>
+
+  <section class="browser-primary-params" aria-label="结构的常用参数">
+    <div class="browser-param"><label for="browser-fn"><span>固有频率 <small>fₙD/Uref</small></span><output id="browser-fn-out">0.180</output></label><input id="browser-fn" type="range" min="0.08" max="0.3" step="0.005" value="0.18" disabled></div>
+    <div class="browser-param"><label for="browser-zeta"><span>阻尼比 <small>ζ</small></span><output id="browser-zeta-out">1.00%</output></label><input id="browser-zeta" type="range" min="0.2" max="15" step="0.1" value="1" disabled></div>
+  </section>
+
+  <section class="browser-response" aria-label="当前结构振动">
+    <div class="browser-response-head"><h2>结构振动</h2><span>位移 y/D <strong id="browser-y">0.0000</strong></span></div>
+    <div class="browser-response-visual"><div class="browser-structure-wrap"><canvas id="browser-structure" aria-label="由真实位移驱动的弹性支承结构示意，放大倍数另标"></canvas><p id="browser-motion-scale">结构示意 · 位移 ×10</p></div><div class="browser-motion-wrap"><canvas id="browser-motion" aria-label="最近一段计算时间的真实结构位移曲线"></canvas></div></div>
+    <p id="browser-response-note" class="browser-note">初始流场需要发展，响应会随计算逐步建立。</p>
+  </section>
+
+  <details id="browser-more" class="browser-more"><summary>更多观察与设置<span>固定结构 · 质量 · 流场 · 导出</span></summary><div class="browser-more-body">
+    <section class="browser-extra-section"><h2>结构支承与质量阻尼</h2><div class="browser-segment" role="group" aria-label="选择结构支承"><button id="browser-free" aria-pressed="true" disabled>弹性支承</button><button id="browser-fixed" aria-pressed="false" disabled>固定结构</button></div><p id="browser-support-note" class="browser-note">流体升力推动结构，结构运动反馈给流场。</p>
+      <div class="browser-param"><label for="browser-mass"><span>质量比 m*</span><output id="browser-mass-out">10</output></label><input id="browser-mass" type="range" min="10" max="60" step="1" value="10" disabled></div>
+      <div class="browser-param"><label for="browser-sc"><span>按 Scruton 数调阻尼</span><output id="browser-sc-out">0.987</output></label><input id="browser-sc" type="range" min="0.197392" max="14.804407" step="0.001" value="0.98696" disabled></div>
+      <p class="browser-note">Sc = π²m*ζ。调 Sc 会联动阻尼比；改变质量时保持固有频率，刚度和阻尼系数随之调整。保持风速、等待响应建立，再比较阻尼的影响。</p>
+      <dl class="browser-values"><dt>约化风速 U/(fₙD)</dt><dd id="browser-ur">—</dd><dt>质量 m/(ρD²)</dt><dd id="browser-m">—</dd><dt>刚度 k/(ρUref²)</dt><dd id="browser-k">—</dd><dt>阻尼 c/(ρUrefD)</dt><dd id="browser-c">—</dd><dt>雷诺数 Re</dt><dd id="browser-re">—</dd></dl>
+      <p class="browser-equation">m ÿ + c ẏ + k y = F<sub>L,CFD</sub></p>
+    </section>
+    <section class="browser-extra-section"><h2>观察流场</h2><div class="browser-select-row"><label>着色<select id="browser-field-mode"><option value="vorticity">涡量</option><option value="velocity">速度大小</option><option value="pressure">流场压力</option><option value="surface">圆柱表面 Cp</option></select></label><label>配色<select id="browser-theme"><option value="dark">暗色</option><option value="light">明色</option></select></label></div>
+      <p id="browser-field-note" class="browser-note">随体流场转换为实验室视图，圆柱按真实位移显示。颜色由流体网格值插值；结构近景的放大不作用于流场。</p>
+      <article id="browser-surface-card" hidden><h3>此刻的周向压力系数</h3><canvas id="browser-cp" aria-label="当前圆柱表面压力系数随周向角变化"></canvas><p id="browser-cp-note" class="browser-note"></p></article>
+    </section>
+    <details id="browser-history-details" class="browser-inner-details"><summary>查看风速、升力与频率</summary><div class="browser-chart-grid"><article><h3>入口风速</h3><canvas id="browser-wind-history"></canvas></article><article><h3>升力系数</h3><canvas id="browser-lift-history"></canvas></article></div><p id="browser-frequency-note" class="browser-note">频率需要足够长的时程才能估计。StU/D 只作参考，不是施加的正弦荷载。</p></details>
+    <section class="browser-extra-section"><h2>保留这次实验</h2><div class="browser-action-row"><button id="browser-export" disabled>导出实验 JSON</button><button id="browser-export-csv" disabled>导出时程 CSV</button><button id="browser-reset" disabled>重新开始</button></div><p class="browser-note">重新开始会清空这次流场与时程。调风速和结构参数会保留当前状态。</p></section>
+    <details class="browser-inner-details"><summary>计算方法与适用范围</summary><div class="browser-method"><p id="browser-method-description">浏览器在当前设备上逐步计算二维低雷诺数流动与横向单自由度结构响应；手机性能会影响计算速度。它是一项教学实验，尚不能替代工程收敛分析。</p><p>fₙ 与 ζ 控制结构响应。质量比 m*=m/(ρπD²/4)，本页 Scruton 数采用 Sc=4πmζ/(ρD²)=π²m*ζ。刚度 k=m(2πfₙ)²，阻尼系数 c=2ζm(2πfₙ)。参数切换后会产生瞬态，不能立即当作稳态结果。</p><p id="browser-method-field">流场显示只使用本次现场计算结果；不载入预计算工况。采用随圆柱平移的均匀附体网格及横向周期边界；画面将当前场转换到实验室坐标显示，圆柱按实际位移运动。本页不显示局部变形网格。局部 ALE 动网格与更多验证在教师进阶页。</p><p id="browser-method-pressure">瞬态 Cp 使用当前入口风速的动压作分母。表面取样和静压基准见压力图说明，低分辨率压力结果用于观察趋势。</p><p id="browser-performance">计算速度测量中。</p></div></details>
+  </div></details>
+  <footer class="browser-footer"><a href="advanced.html">教师进阶页：ALE 动网格与完整分析 <span aria-hidden="true">↗</span></a><span>浏览器现场计算 · 无须启动本机服务</span></footer>
+</main>

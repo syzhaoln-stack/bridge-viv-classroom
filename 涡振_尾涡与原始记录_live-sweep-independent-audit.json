@@ -1,0 +1,84 @@
+{
+  "source": "D:\\claude_work\\20260908_\u6865\u6881\u6297\u98ce\u8bfe\u7a0b\u5907\u8bfe\\advanced-wind-course\\viv\\ale\\live_qa\\live-sweep-evidence.npz",
+  "geometry": {
+    "nodeCount": 459,
+    "elementCount": 844,
+    "frameCount": 50,
+    "referenceMinimumAbsoluteArea": 0.004877258050403186,
+    "minimumJacobianRatio": 0.8297351839029362,
+    "maximumJacobianRatio": 1.1705683419031696,
+    "allElementsKeepOrientation": true,
+    "outerBoundaryMaximumDisplacement": 0.0,
+    "wallRigidTranslationMaximumError": 1.6653345369377348e-16,
+    "harmonicMappingMaximumError": 4.440892098500626e-16,
+    "maximumBodyDisplacement": 0.22451990093995877,
+    "nonuniformMeshWeightsObserved": true,
+    "nonzeroBodyMotionObserved": true,
+    "gclKind": "Geometry-only swept-area identity; not solver free-stream preservation",
+    "geometryGclMaximumAbsoluteError": 9.594511600138911e-17,
+    "geometryGclPassed": true,
+    "passed": true,
+    "coordinateEvidence": "Directly saved node coordinates"
+  },
+  "pressureSignManufacturedCheck": {
+    "linearPressurePyForce": [
+      -1.0408340855860843e-17,
+      -0.7803612880645132
+    ],
+    "expectedForce": [
+      0.0,
+      -0.7803612880645129
+    ],
+    "constantPressureForce": [
+      -5.551115123125783e-17,
+      -4.163336342344337e-17
+    ],
+    "passed": true
+  },
+  "allNumericArraysFinite": true,
+  "structure": {
+    "endpointForceBalanceRelativeRms": 0.07015295201534694,
+    "previousForceBalanceRelativeRms": 1.8799716723382033e-14,
+    "centralDerivativeForceBalanceRelativeRms": 0.10626150586495306,
+    "velocityVsCentralDisplacementDerivativeRms": 0.002031244536654891,
+    "energyChange": 0.005103077700238145,
+    "fluidWorkTrapezoid": 0.7652157991544678,
+    "dissipationTrapezoid": 0.2275012675247317,
+    "energyBalanceAbsoluteResidual": -0.5326114539294979,
+    "backwardEulerPreviousForceDiscreteWork": 0.842413547807157,
+    "backwardEulerPhysicalDissipation": 0.22750127043157853,
+    "backwardEulerNumericalDissipation": 0.6098091996753797,
+    "backwardEulerDiscreteEnergyResidual": 3.930189507173054e-14,
+    "backwardEulerNumericalVsPhysicalDissipationRatio": 2.680465030013013,
+    "interpretation": "Finite difference and trapezoid values are diagnostics; timestep study required."
+  },
+  "fluid": {
+    "framesChecked": 50,
+    "wallP2NoSlipMaximumError": 0.0,
+    "meshVelocityMaximumError": 0.0,
+    "independentWeakDivergenceMaximum": 1.4151765696801544e-14,
+    "strongDivergenceMaximumDomainRms": 0.13710027347058146,
+    "netOuterAndBodyFluxMaximum": 2.6201263381153694e-14,
+    "bodyClosedBoundaryFluxMaximum": 9.974659986866641e-18,
+    "independentTractionMaximumDifference": 6.661338147750939e-16,
+    "lastFrameForceComponents": {
+      "time": 250.0,
+      "independentForce": [
+        1.4885079643258639,
+        0.29892208327289493
+      ],
+      "pressureForce": [
+        1.1376823982092867,
+        0.2739209976910246
+      ],
+      "viscousForce": [
+        0.350825566116577,
+        0.02500108558187024
+      ]
+    },
+    "passed": true,
+    "scope": "Current P2 fields and pressure are independently differentiated/integrated. This is algebraic verification, not grid or timestep convergence."
+  },
+  "passed": true,
+  "scope": "Independent geometry, P2 boundary/divergence/traction, and structural history audit. Does not validate lock-in or mesh/time convergence."
+}

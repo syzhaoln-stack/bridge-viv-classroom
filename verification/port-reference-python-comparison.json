@@ -1,0 +1,11 @@
+{
+  "source": "port-reference.json",
+  "solverSha256": "3088a8be07a0588a1cc7b84fd3e842b9b703bdc54f888a1885c64568e8f74588",
+  "maximumAbsoluteDifferences": {
+    "populations": 0.0,
+    "state": 1.0842021724855044e-19,
+    "forces": 0.0
+  },
+  "passed": true,
+  "interpretation": "Production Node solver compared to unchanged production Python integrator at identical lattice state and controls; short port consistency, not mesh/time convergence."
+}

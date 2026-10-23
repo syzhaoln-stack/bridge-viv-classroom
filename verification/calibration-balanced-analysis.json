@@ -1,0 +1,485 @@
+{
+  "source": "calibration-balanced.json",
+  "solverSha256": "ee2158bce5b1d52eae5956e1333f032c5d43ead0db093a42af4c62b29656feb0",
+  "calculationCompleted": true,
+  "passed": true,
+  "cases": [
+    {
+      "name": "low hold",
+      "samples": 895,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        120.14625000000001,
+        179.99625
+      ],
+      "windRange": [
+        0.6,
+        0.6
+      ],
+      "yRms": 0.0035172024594767727,
+      "yHalfRange": 0.005287345618566171,
+      "CLRms": 0.14682449120896185,
+      "CDMean": 1.8398169143842404,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.08337154529159196,
+        "resolution": 0.016674309058318394,
+        "windowStart": 120.14625000000001,
+        "windowEnd": 179.91750000000002,
+        "windowPeriodCount": 4.983221476510067,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.14655664660029932,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.4631752516199554
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.08337154529159196,
+        "resolution": 0.016674309058318394,
+        "windowStart": 120.14625000000001,
+        "windowEnd": 179.91750000000002,
+        "windowPeriodCount": 4.983221476510067,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.0035106359420478497,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.4631752516199554
+      },
+      "diagnostics": {
+        "densityMinimum": 0.991639481172645,
+        "densityMaximum": 1.0090716727887272,
+        "meanDensityRange": [
+          0.9996028851219187,
+          1.0004719378680895
+        ],
+        "maximumRelativeMach": 0.10427782279683813,
+        "diagnosticSampleCount": 18
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.08337154529159196,
+        "resolution": 0.016674309058318394,
+        "windowStart": 120.14625000000001,
+        "windowEnd": 179.91750000000002,
+        "windowPeriodCount": 4.983221476510067,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.14471015987363406,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.4631752516199554
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    },
+    {
+      "name": "low to near ramp",
+      "samples": 299,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        200.12125000000003,
+        239.99500000000003
+      ],
+      "windRange": [
+        0.7341083333333334,
+        0.9999333333333333
+      ],
+      "yRms": 0.040005015538979144,
+      "yHalfRange": 0.11618280618182927,
+      "CLRms": 0.2584390927882325,
+      "CDMean": 1.8102091259828377,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.14981741003152407,
+        "resolution": 0.024969568338587347,
+        "windowStart": 200.12125000000003,
+        "windowEnd": 239.96875000000003,
+        "windowPeriodCount": 5.969849246231155,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.2569192649234744,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.8323189446195782
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.14981741003152407,
+        "resolution": 0.024969568338587347,
+        "windowStart": 200.12125000000003,
+        "windowEnd": 239.96875000000003,
+        "windowPeriodCount": 5.969849246231155,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.03969064254852324,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.8323189446195782
+      },
+      "diagnostics": {
+        "densityMinimum": 0.9863096529715077,
+        "densityMaximum": 1.0114203254775012,
+        "meanDensityRange": [
+          0.9996084598438285,
+          1.000034851796672
+        ],
+        "maximumRelativeMach": 0.1906704974674434,
+        "diagnosticSampleCount": 6
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.14981741003152407,
+        "resolution": 0.024969568338587347,
+        "windowStart": 200.12125000000003,
+        "windowEnd": 239.96875000000003,
+        "windowPeriodCount": 5.969849246231155,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.28613039492475506,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.8323189446195782
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    },
+    {
+      "name": "near hold",
+      "samples": 497,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        280.04375000000005,
+        339.99875000000003
+      ],
+      "windRange": [
+        1.0,
+        1.0
+      ],
+      "yRms": 0.25061141885238003,
+      "yHalfRange": 0.35322389319947445,
+      "CLRms": 0.11614938578442015,
+      "CDMean": 2.288834718646772,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.18341739964150233,
+        "resolution": 0.016674309058318394,
+        "windowStart": 280.04375000000005,
+        "windowEnd": 339.81500000000005,
+        "windowPeriodCount": 10.963087248322148,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.11627402651867287,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.0189855535639019
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.18341739964150233,
+        "resolution": 0.016674309058318394,
+        "windowStart": 280.04375000000005,
+        "windowEnd": 339.81500000000005,
+        "windowPeriodCount": 10.963087248322148,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.2502419979077982,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.0189855535639019
+      },
+      "diagnostics": {
+        "densityMinimum": 0.9824618274973098,
+        "densityMaximum": 1.015111166285826,
+        "meanDensityRange": [
+          1.0002065135681117,
+          1.0009720629087226
+        ],
+        "maximumRelativeMach": 0.2136778691937431,
+        "diagnosticSampleCount": 10
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.18341739964150233,
+        "resolution": 0.016674309058318394,
+        "windowStart": 280.04375000000005,
+        "windowEnd": 339.81500000000005,
+        "windowPeriodCount": 10.963087248322148,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.5397905878948868,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.0189855535639019
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    },
+    {
+      "name": "near to high ramp",
+      "samples": 299,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        360.12375000000003,
+        399.99750000000006
+      ],
+      "windRange": [
+        1.1676354166666665,
+        1.4999166666666668
+      ],
+      "yRms": 0.11181041347472172,
+      "yHalfRange": 0.2564870123460298,
+      "CLRms": 0.21130800299655342,
+      "CDMean": 1.7544163763632514,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.22472611504728596,
+        "resolution": 0.02496956833858733,
+        "windowStart": 360.12375000000003,
+        "windowEnd": 399.97125000000005,
+        "windowPeriodCount": 8.954773869346733,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.2094314927011184,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.2484784169293666
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 360.12375000000003,
+        "windowEnd": 399.97125000000005,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.11137558039681614,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "diagnostics": {
+        "densityMinimum": 0.9712458687218649,
+        "densityMaximum": 1.0249602907101538,
+        "meanDensityRange": [
+          1.0003662024642077,
+          1.0010712521625926
+        ],
+        "maximumRelativeMach": 0.2810767714917067,
+        "diagnosticSampleCount": 6
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.22472611504728596,
+        "resolution": 0.02496956833858733,
+        "windowStart": 360.12375000000003,
+        "windowEnd": 399.97125000000005,
+        "windowPeriodCount": 8.954773869346733,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.6015327764740367,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.2484784169293666
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    },
+    {
+      "name": "high hold",
+      "samples": 497,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        440.04625000000004,
+        500.00125
+      ],
+      "windRange": [
+        1.5,
+        1.5
+      ],
+      "yRms": 0.030988587328829167,
+      "yHalfRange": 0.05273116410755112,
+      "CLRms": 0.3804509766097526,
+      "CDMean": 1.8075169404305955,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.2834632539914127,
+        "resolution": 0.016674309058318394,
+        "windowStart": 440.04625000000004,
+        "windowEnd": 499.81750000000005,
+        "windowPeriodCount": 16.94295302013423,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.38081551793312246,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.5747958555078483
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.2834632539914127,
+        "resolution": 0.016674309058318394,
+        "windowStart": 440.04625000000004,
+        "windowEnd": 499.81750000000005,
+        "windowPeriodCount": 16.94295302013423,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.03101900717562994,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.5747958555078483
+      },
+      "diagnostics": {
+        "densityMinimum": 0.9647585331171722,
+        "densityMaximum": 1.0270028450300757,
+        "meanDensityRange": [
+          1.001728153156213,
+          1.0024205033464897
+        ],
+        "maximumRelativeMach": 0.2944494320897528,
+        "diagnosticSampleCount": 10
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.2834632539914127,
+        "resolution": 0.016674309058318394,
+        "windowStart": 440.04625000000004,
+        "windowEnd": 499.81750000000005,
+        "windowPeriodCount": 16.94295302013423,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.7713043129686201,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 1.5747958555078483
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    },
+    {
+      "name": "baseline damping branch",
+      "samples": 398,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        380.0475,
+        420.00000000000006
+      ],
+      "windRange": [
+        1.0,
+        1.0
+      ],
+      "yRms": 0.2503578827467075,
+      "yHalfRange": 0.3532728523433871,
+      "CLRms": 0.11309683084298354,
+      "CDMean": 2.2917718048125426,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.11280504467737158,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.24933458975788841,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "diagnostics": {
+        "densityMinimum": 0.9821548876475085,
+        "densityMaximum": 1.0132436440232924,
+        "meanDensityRange": [
+          1.000552635639208,
+          1.0008757441624505
+        ],
+        "maximumRelativeMach": 0.21281474646700616,
+        "diagnosticSampleCount": 8
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.5424135799005427,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    },
+    {
+      "name": "larger damping branch",
+      "samples": 398,
+      "allFinite": true,
+      "monotonicTime": true,
+      "analysisWindow": [
+        380.0475,
+        420.00000000000006
+      ],
+      "windRange": [
+        1.0,
+        1.0
+      ],
+      "yRms": 0.11068506271992797,
+      "yHalfRange": 0.15551863894467713,
+      "CLRms": 0.3500208584434288,
+      "CDMean": 2.0246520892247206,
+      "liftFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.34941260031710225,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "responseFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.11058333574655632,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "diagnostics": {
+        "densityMinimum": 0.9839861243592211,
+        "densityMaximum": 1.0126540551555108,
+        "meanDensityRange": [
+          1.000373116258754,
+          1.0008379587484835
+        ],
+        "maximumRelativeMach": 0.1960453532892402,
+        "diagnosticSampleCount": 8
+      },
+      "probeFrequency": {
+        "valid": true,
+        "fftBinFrequency": 0.1747869783701113,
+        "resolution": 0.02496956833858733,
+        "windowStart": 380.0475,
+        "windowEnd": 419.89500000000004,
+        "windowPeriodCount": 6.964824120603015,
+        "omittedNonuniformTrailingSamples": 1,
+        "detrendedRms": 0.500007933257851,
+        "method": "linear detrend, Hann window, unpadded FFT; no fn-guided peak selection",
+        "overFn": 0.9710387687228407
+      },
+      "fnRange": [
+        0.18,
+        0.18
+      ]
+    }
+  ],
+  "interpretation": "Observed finite-window responses. No artificial amplitude scaling or expected peak-order assertion. Numerical validity does not establish convergence."
+}

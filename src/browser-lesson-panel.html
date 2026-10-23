@@ -1,0 +1,21 @@
+<details id="viv-lesson" class="viv-lesson">
+  <summary><span>课堂练习 · 用观察回答四题</span><span id="lesson-progress" class="lesson-progress">已提交 0 / 4</span></summary>
+  <div class="lesson-body">
+    <p class="lesson-intro">先试一试，再选择答案。每次调参都沿用当前流场；保持一段时间，记录后再比较。</p>
+    <div id="lesson-questions"></div>
+    <details id="lesson-records" class="lesson-records">
+      <summary>我的观察记录 <span id="lesson-record-count">0 条</span></summary>
+      <p class="lesson-note">记录取自点击时的计算结果。幅值是最近最多 40 t* 内位移的半峰峰值，不能直接当作稳态振幅。频率单位为 fD/Uref，时间单位为 tUref/D。</p>
+      <div id="lesson-record-list"><p class="lesson-empty">观察时点“记录当前观察”，把不同风速或阻尼下的读数留在这里。</p></div>
+    </details>
+    <div class="lesson-export-row"><button id="lesson-export" type="button" disabled>导出作答与观察</button><span>只保存在本页，不上传；刷新前可导出。</span></div>
+    <p id="lesson-status" class="lesson-note" role="status"></p>
+    <details class="lesson-sources"><summary>题目条件与概念依据</summary>
+      <p>本页的二维圆柱计算用于观察涡激振动。颤振、抖振和扭转发散仅作概念对照，不能用当前计算验证它们。“无限增长”指线性失稳模型的发散趋势，真实结构还受非线性或破坏限制。</p>
+      <p>第 3 题按交替脱涡主频讨论，fₛ 与升力主频对应；fₛ∝U 需要断面尺寸不变、Strouhal 数近似不变，且处于锁定区外。频谱读数存在有限窗口分辨率，不会被强制调成相同数值。</p>
+      <p>第 4 题中，改变频率或提高刚度的目标是使结构避开所考察风速下的共振区。提高刚度并非在所有风速下都减振。湍流影响依赖断面、尺度和工况；本页没有可调的来流湍流模型。</p>
+      <ul><li><a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" target="_blank" rel="noopener noreferrer">NASA：低雷诺数圆柱脱涡与力的频率</a></li><li><a href="https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/05083/chap3.cfm" target="_blank" rel="noopener noreferrer">FHWA：涡激振动与质量阻尼</a></li><li><a href="https://www.sciencedirect.com/science/article/pii/S014102962101542X" target="_blank" rel="noopener noreferrer">桥梁风洞研究：湍流与阻尼对涡振的影响</a></li></ul>
+    </details>
+  </div>
+</details>
+<aside id="lesson-observe-dock" class="lesson-observe-dock" aria-label="课堂观察工具" hidden><span id="lesson-dock-context">正在观察第 1 题</span><div><button id="lesson-dock-record" type="button">记录当前观察</button><button id="lesson-dock-return" type="button">返回答题</button><button id="lesson-dock-close" type="button" aria-label="收起课堂观察工具">×</button></div><span id="lesson-dock-status" role="status"></span></aside>

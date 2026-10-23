@@ -1,0 +1,145 @@
+{
+  "solverSha256": "ee2158bce5b1d52eae5956e1333f032c5d43ead0db093a42af4c62b29656feb0",
+  "referenceVelocity": 0.07,
+  "before": {
+    "step": 16000,
+    "t": 140,
+    "y": 0.3336490198274007,
+    "v": 0.1307783272778415,
+    "densityMin": 0.9848465633771197,
+    "densityMax": 1.011160934692927,
+    "densityMean": 1.0005483014496188,
+    "maxRelativeMach": 0.19009990814335,
+    "inletMach": 0.12124355652982141,
+    "fluidCells": 12750,
+    "tau": 0.5168,
+    "fieldFinite": true
+  },
+  "immediate": {
+    "y": 0.3336490198274007,
+    "v": 0,
+    "probeV": -0.4104510440105428,
+    "pendingFrameImpulse": {
+      "step": 16000,
+      "t": 140,
+      "type": "constraint-impulse",
+      "impulseY": -4.60154500091808,
+      "lockedY": 0.3336490198274007
+    }
+  },
+  "fixedSnapshots": [
+    {
+      "step": 16001,
+      "t": 140.00875000000002,
+      "y": 0.3336490198274007,
+      "v": 0,
+      "densityMin": 0.9848621808358089,
+      "densityMax": 1.0112841912991573,
+      "densityMean": 1.0005534031996688,
+      "maxRelativeMach": 0.1905303083864916,
+      "inletMach": 0.12124355652982141,
+      "fluidCells": 12750,
+      "tau": 0.5168,
+      "fieldFinite": true
+    },
+    {
+      "step": 16002,
+      "t": 140.0175,
+      "y": 0.3336490198274007,
+      "v": 0,
+      "densityMin": 0.971829145915191,
+      "densityMax": 1.011460990282535,
+      "densityMean": 1.0005585877912115,
+      "maxRelativeMach": 0.190444593298044,
+      "inletMach": 0.12124355652982141,
+      "fluidCells": 12750,
+      "tau": 0.5168,
+      "fieldFinite": true
+    },
+    {
+      "step": 16010,
+      "t": 140.0875,
+      "y": 0.3336490198274007,
+      "v": 0,
+      "densityMin": 0.978735863104176,
+      "densityMax": 1.0134962251431638,
+      "densityMean": 1.0006023100380323,
+      "maxRelativeMach": 0.19315870020483342,
+      "inletMach": 0.12124355652982141,
+      "fluidCells": 12750,
+      "tau": 0.5168,
+      "fieldFinite": true
+    },
+    {
+      "step": 16050,
+      "t": 140.4375,
+      "y": 0.3336490198274007,
+      "v": 0,
+      "densityMin": 0.9826212704693312,
+      "densityMax": 1.0100609823160098,
+      "densityMean": 1.0007812290790632,
+      "maxRelativeMach": 0.19470052486402553,
+      "inletMach": 0.12124355652982141,
+      "fluidCells": 12750,
+      "tau": 0.5168,
+      "fieldFinite": true
+    },
+    {
+      "step": 16150,
+      "t": 141.3125,
+      "y": 0.3336490198274007,
+      "v": 0,
+      "densityMin": 0.985816821290388,
+      "densityMax": 1.0083953031288624,
+      "densityMean": 1.0007132642562206,
+      "maxRelativeMach": 0.1970183749457514,
+      "inletMach": 0.12124355652982141,
+      "fluidCells": 12750,
+      "tau": 0.5168,
+      "fieldFinite": true
+    },
+    {
+      "step": 16350,
+      "t": 143.0625,
+      "y": 0.3336490198274007,
+      "v": 0,
+      "densityMin": 0.9856887958785434,
+      "densityMax": 1.0118345311025074,
+      "densityMean": 0.9999127591716029,
+      "maxRelativeMach": 0.19027805221202146,
+      "inletMach": 0.12124355652982141,
+      "fluidCells": 12750,
+      "tau": 0.5168,
+      "fieldFinite": true
+    }
+  ],
+  "release": {
+    "y": 0.3336490198274007,
+    "v": 0,
+    "a": -0.4002848360891473
+  },
+  "after": {
+    "step": 16550,
+    "t": 144.8125,
+    "y": -0.04341330113703824,
+    "v": -0.3062266400398354,
+    "densityMin": 0.9826980074986719,
+    "densityMax": 1.007919472642194,
+    "densityMean": 0.9997869820595215,
+    "maxRelativeMach": 0.19419025226146366,
+    "inletMach": 0.12124355652982141,
+    "fluidCells": 12750,
+    "tau": 0.5168,
+    "fieldFinite": true
+  },
+  "checks": {
+    "nonzeroPreConstraintMotion": true,
+    "noImmediateLabFluidVelocityJump": true,
+    "noPositionJump": true,
+    "heldPositionAndZeroVelocity": true,
+    "finiteStableFields": true,
+    "motionResumes": true
+  },
+  "passed": true,
+  "immediateFluidVelocityJump": 0
+}

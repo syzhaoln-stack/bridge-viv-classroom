@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "fundamental": {
+    "frequency": 0.17578125,
+    "resolution": 0.024968789013732832,
+    "windowStart": 0,
+    "windowEnd": 40,
+    "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+    "samples": 801
+  },
+  "dominantHigherHarmonic": {
+    "frequency": 1.71875,
+    "resolution": 0.024968789013732832,
+    "windowStart": 0,
+    "windowEnd": 40,
+    "method": "linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution",
+    "samples": 801
+  },
+  "constantAndInsufficientAndIrregularRejected": true
+}

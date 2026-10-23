@@ -1,0 +1,63 @@
+{
+  "solverSha256": "3088a8be07a0588a1cc7b84fd3e842b9b703bdc54f888a1885c64568e8f74588",
+  "checks": {
+    "parameters": {
+      "fieldChange": 0,
+      "stepChange": 0,
+      "yChange": 0,
+      "vChange": 0,
+      "timeScaleChange": 0,
+      "kError": 0,
+      "cError": 0,
+      "scError": 0,
+      "updatedAccelerationError": 0
+    },
+    "wind": {
+      "actual": 0.65175,
+      "target": 1.3,
+      "previous": 0.65,
+      "expected": 0.65175,
+      "stepIncrement": 1
+    },
+    "fixed": {
+      "displacementChange": 0,
+      "velocity": 0,
+      "acceleration": 0,
+      "fluidAdvanced": 251
+    },
+    "release": {
+      "displacementChange": 0,
+      "accelerationError": 0
+    },
+    "clone": {
+      "fieldDifference": 0,
+      "stateDifference": 0
+    }
+  },
+  "passed": true,
+  "portReferenceSteps": 200,
+  "startupMilliseconds": 467.3135,
+  "decays": [
+    {
+      "zeta": 0,
+      "measuredZeta": 7.021374509308527e-08,
+      "frequencyOverFn": 0.9999625014061971,
+      "energyFinalOverInitial": 1.0000000000000058,
+      "passed": true
+    },
+    {
+      "zeta": 0.01,
+      "measuredZeta": 0.009999852266286184,
+      "frequencyOverFn": 0.9999625014061971,
+      "energyFinalOverInitial": 0.08099573682230689,
+      "passed": true
+    },
+    {
+      "zeta": 0.05,
+      "measuredZeta": 0.04999919187491657,
+      "frequencyOverFn": 0.9987390918964808,
+      "energyFinalOverInitial": 3.434582701721599e-06,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="手机涡振实验：运行中调风速，观察真实计算的尾涡与结构振动，比较固有频率和阻尼的影响。">
+<meta name="theme-color" content="#102a43"><link rel="icon" href="data:,">
+<title>涡振 · 拖动风速，看尾涡与振动</title>
+<style>:root{color-scheme:light;--bv-ink:#173b51;--bv-muted:#5c7180;--bv-teal:#008b88;--bv-blue:#216b99;--bv-orange:#ce6a2b;--bv-line:#d5e2e9;--bv-soft:#f4f8fa;--bv-mono:ui-monospace,SFMono-Regular,Consolas,monospace;font-family:"Segoe UI","Microsoft YaHei",sans-serif;color:var(--bv-ink);background:#f7fafc}*{box-sizing:border-box}body{margin:0}.browser-lab{max-width:940px;margin:auto;padding:18px 14px 30px}.browser-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.browser-eyebrow{font-size:10px;letter-spacing:.12em;color:var(--bv-teal);margin:0 0 5px;font-weight:650}.browser-heading h1{font-size:19px;line-height:1.4;letter-spacing:.01em;margin:0;font-weight:650}.browser-badge{flex-shrink:0;font-size:10px;color:var(--bv-teal);white-space:nowrap;padding:5px 0;border-bottom:2px solid #9ecfcb}.browser-status{font-size:11px;color:var(--bv-muted);line-height:1.6;margin:8px 0 12px;min-height:18px}.browser-status[data-error=true]{color:#a04721}.browser-experiment{background:#fff;border:1px solid var(--bv-line);border-radius:9px;overflow:hidden}.browser-field-wrap{background:#101e2d;color:#bed3e1}#browser-field{display:block;width:100%;height:218px;touch-action:pan-y}.browser-field-key{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:9px;padding:0 10px 10px;line-height:1.4}.browser-colorbar{height:5px;width:52px;background:linear-gradient(90deg,#3d96cf,#12253a,#ed835b)}.browser-scale-note{margin-left:auto;opacity:.8}.browser-runbar{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bv-line);padding:10px}.browser-lab button,.browser-lab select{font:inherit;min-height:42px;border:1px solid var(--bv-line);border-radius:6px;color:var(--bv-ink);background:#fff;padding:8px 12px;cursor:pointer}.browser-lab button.browser-primary{font-size:14px;font-weight:650;min-width:106px;background:var(--bv-teal);border-color:var(--bv-teal);color:white}.browser-lab button:disabled,.browser-lab input:disabled{opacity:.5;cursor:default}#browser-clock{font:11px var(--bv-mono);white-space:nowrap}#browser-stage{font-size:10px;line-height:1.5;color:var(--bv-muted);margin-left:auto;max-width:102px;text-align:right}.browser-wind-control{padding:12px 13px 10px}.browser-wind-control label,.browser-param label{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:600}.browser-wind-control label small,.browser-param label small{font-size:10px;font-weight:400;color:var(--bv-muted);margin-left:4px}.browser-wind-control output{font:600 23px var(--bv-mono);color:var(--bv-teal)}.browser-lab input[type=range]{display:block;width:100%;height:36px;margin:4px 0 0;appearance:none;background:transparent;cursor:pointer;touch-action:pan-y;--fill:9%}.browser-lab input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:5px;background:linear-gradient(to right,var(--bv-teal) var(--fill),#dce7ec var(--fill))}.browser-lab input[type=range]::-webkit-slider-thumb{appearance:none;width:25px;height:25px;margin-top:-10px;border:3px solid white;border-radius:50%;background:var(--bv-teal);box-shadow:0 0 0 1px #94c6c3}.browser-lab input[type=range]::-moz-range-track{height:5px;border-radius:5px;background:#dce7ec}.browser-lab input[type=range]::-moz-range-progress{height:5px;background:var(--bv-teal)}.browser-lab input[type=range]::-moz-range-thumb{width:20px;height:20px;border:3px solid white;border-radius:50%;background:var(--bv-teal)}#browser-wind{height:42px}.browser-range-caption{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--bv-muted);line-height:1.4}.browser-range-caption b{font:11px var(--bv-mono);font-weight:500;color:var(--bv-ink)}.browser-primary-params{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:16px 1px 8px}.browser-primary-params label{align-items:flex-start;font-size:12px;gap:4px}.browser-primary-params label>span small{display:block;margin:2px 0 0}.browser-param output{font:600 13px var(--bv-mono);color:var(--bv-teal);white-space:nowrap}.browser-response{padding:11px 0 0;border-top:1px solid var(--bv-line);margin-top:3px}.browser-response-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.browser-response h2,.browser-extra-section h2{font-size:14px;margin:0;font-weight:650}.browser-response-head>span{font-size:11px;color:var(--bv-muted)}.browser-response-head strong{font:600 14px var(--bv-mono);color:var(--bv-teal);margin-left:5px}.browser-response-visual{display:grid;grid-template-columns:104px minmax(0,1fr);gap:8px;align-items:start;margin-top:9px}.browser-structure-wrap{min-width:0}#browser-structure{display:block;width:100%;height:122px;background:#eef5f8;border-radius:7px}.browser-structure-wrap p{font-size:9px;line-height:1.45;margin:4px 0 0;text-align:center;color:var(--bv-muted)}.browser-motion-wrap{min-width:0}#browser-motion{display:block;width:100%;height:144px}.browser-note{font-size:11px;line-height:1.7;color:var(--bv-muted);margin:7px 0}.browser-more{margin-top:16px;border-top:1px solid var(--bv-line);border-bottom:1px solid var(--bv-line)}.browser-more>summary{font-size:14px;padding:17px 2px;cursor:pointer;font-weight:600;line-height:1.5}.browser-more>summary>span{display:block;font-size:10px;font-weight:400;color:var(--bv-muted);margin-left:18px}.browser-more-body{padding:0 1px 10px}.browser-extra-section{border-top:1px solid var(--bv-line);padding:17px 0}.browser-extra-section h2{margin-bottom:12px}.browser-segment{display:flex;gap:8px}.browser-segment button{flex:1;font-size:12px}.browser-segment button[aria-pressed=true]{background:#eaf7f5;border-color:#86bebb;color:#006d6a}.browser-extra-section .browser-param{margin-top:18px}.browser-values{display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:11px;margin:16px 0}.browser-values dt{color:var(--bv-muted)}.browser-values dd{font-family:var(--bv-mono);margin:0;text-align:right}.browser-equation{font:13px var(--bv-mono);padding:12px;background:#eaf4f6;border-left:3px solid var(--bv-teal);margin:12px 0 0}.browser-select-row{display:flex;gap:16px}.browser-select-row label{display:flex;align-items:center;gap:8px;font-size:12px}.browser-select-row select{font-size:12px;padding:7px 8px}.browser-inner-details{border-top:1px solid var(--bv-line);padding:14px 0;font-size:12px}.browser-inner-details>summary{cursor:pointer;min-height:24px;line-height:1.7}.browser-method{font-size:11px;line-height:1.8;color:var(--bv-muted)}.browser-chart-grid{display:grid;gap:12px;margin-top:14px}.browser-chart-grid h3,#browser-surface-card h3{font-size:12px;font-weight:600;margin:13px 0 3px}.browser-chart-grid canvas{display:block;width:100%;height:180px}#browser-cp{display:block;width:100%;height:220px}.browser-action-row{display:flex;gap:8px;flex-wrap:wrap}.browser-action-row button{font-size:11px;flex:1;white-space:nowrap}.browser-footer{display:flex;gap:9px;flex-direction:column;font-size:11px;line-height:1.5;margin-top:18px}.browser-footer a{color:var(--bv-blue);text-decoration:none}.browser-footer>span{font-size:10px;color:var(--bv-muted)}.browser-lab [hidden]{display:none!important}.browser-lab :is(button,input,select,summary,a):focus-visible{outline:2px solid var(--bv-orange);outline-offset:3px}@media(min-width:600px){.browser-lab{padding:28px 24px 40px}.browser-heading h1{font-size:26px}.browser-eyebrow{font-size:11px}.browser-status{font-size:12px}.browser-badge{font-size:11px}#browser-field{height:300px}.browser-field-key{font-size:10px;padding:0 16px 12px;gap:10px}.browser-colorbar{width:88px}.browser-runbar{padding:12px 16px}#browser-stage{max-width:none;font-size:12px}#browser-clock{font-size:12px}.browser-wind-control{padding:14px 20px 13px}.browser-wind-control label{font-size:15px}.browser-primary-params{gap:40px;padding:20px 4px 13px}.browser-primary-params label{font-size:14px}.browser-primary-params label>span small{display:inline;margin-left:6px}.browser-param output{font-size:15px}.browser-response-visual{grid-template-columns:150px minmax(0,1fr);gap:18px}#browser-structure{height:150px}#browser-motion{height:174px}.browser-note{font-size:12px}.browser-chart-grid{grid-template-columns:1fr 1fr}.browser-more>summary>span{display:inline;margin-left:14px}.browser-more-body{padding:0 14px 10px}.browser-action-row button{flex:none}.browser-footer{flex-direction:row;justify-content:space-between}.browser-method{font-size:12px}}@media(max-width:374px){.browser-lab{padding-left:11px;padding-right:11px}.browser-heading h1{font-size:17px}.browser-badge{font-size:9px}#browser-field{height:198px}.browser-runbar{gap:7px}.browser-lab button.browser-primary{min-width:96px;font-size:13px}#browser-stage{font-size:9px;max-width:91px}.browser-field-key{font-size:8px;gap:5px}.browser-primary-params{gap:14px}.browser-primary-params label{font-size:11px}.browser-param output{font-size:12px}.browser-response-visual{grid-template-columns:94px minmax(0,1fr);gap:5px}.browser-select-row{gap:10px}.browser-select-row label{gap:5px;font-size:11px}.browser-select-row select{font-size:11px}.browser-action-row button{padding:8px}.browser-response-head strong{font-size:13px}}
+</style><style>.viv-lesson{margin-top:16px;border-top:1px solid var(--bv-line,#d5e2e9);border-bottom:1px solid var(--bv-line,#d5e2e9);color:var(--bv-ink,#173b51)}
+.viv-lesson>summary{cursor:pointer;padding:17px 2px;font-size:14px;font-weight:650;line-height:1.6}
+.lesson-progress{font-size:11px;color:var(--bv-muted,#5c7180);font-weight:400;margin-left:12px;white-space:nowrap}
+.lesson-body{padding:0 1px 15px}.lesson-intro{margin:0 0 15px;font-size:12px;line-height:1.8;color:var(--bv-muted,#5c7180)}
+.lesson-question{border-top:1px solid var(--bv-line,#d5e2e9)}.lesson-question>summary{padding:15px 0;cursor:pointer;font-size:13px;line-height:1.6;font-weight:600}.lesson-question>summary::marker{color:var(--bv-teal,#008b88)}
+.lesson-question-number{color:var(--bv-teal,#008b88);font:600 12px var(--bv-mono,monospace);margin-right:7px}.lesson-question-result{font-size:10px;font-weight:400;margin-left:9px;color:var(--bv-muted,#5c7180)}
+.lesson-question-content{padding-bottom:17px}.lesson-question fieldset{border:0;padding:0;margin:0;min-width:0}.lesson-question legend{font-size:15px;font-weight:650;line-height:1.8;margin:0 0 10px;width:100%}.lesson-condition{font-size:11px;line-height:1.8;margin:0 0 10px;color:var(--bv-muted,#5c7180)}
+.lesson-options{display:grid;gap:8px}.lesson-option{display:flex;align-items:center;gap:9px;min-height:48px;padding:10px 12px;border:1px solid var(--bv-line,#d5e2e9);border-radius:6px;background:#fff;font-size:12px;line-height:1.65;cursor:pointer}.lesson-option input{width:17px;height:17px;margin:0;flex-shrink:0;accent-color:var(--bv-teal,#008b88)}.lesson-option:has(input:checked){background:#eaf7f5;border-color:#80bcb9}.lesson-option-letter{font:600 11px var(--bv-mono,monospace);color:var(--bv-muted,#5c7180)}.lesson-option span:last-child{min-width:0}.lesson-option:focus-within{outline:2px solid var(--bv-orange,#ce6a2b);outline-offset:2px}
+.lesson-submit-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}.viv-lesson button{font:inherit;font-size:12px;min-height:44px;padding:9px 12px;border:1px solid var(--bv-line,#d5e2e9);border-radius:6px;background:#fff;color:var(--bv-ink,#173b51);cursor:pointer}.viv-lesson button.lesson-submit{color:#fff;background:var(--bv-teal,#008b88);border-color:var(--bv-teal,#008b88)}.viv-lesson button:disabled{opacity:.5;cursor:default}.lesson-submit-hint{font-size:10px;color:var(--bv-muted,#5c7180)}
+.lesson-feedback{font-size:12px;line-height:1.9;padding:12px 13px;margin:12px 0 0;border-left:3px solid var(--bv-blue,#216b99);background:#eef5f9}.lesson-feedback[data-correct=true]{border-color:var(--bv-teal,#008b88);background:#eaf7f5}.lesson-feedback>strong{display:block;font-size:13px;margin-bottom:3px}.lesson-feedback p{margin:4px 0}.lesson-feedback ul{padding-left:19px;margin:7px 0}.lesson-feedback li{margin:5px 0}
+.lesson-observe{margin-top:14px;border-left:2px solid #afcdd7;padding-left:12px}.lesson-observe>summary{font-size:12px;line-height:1.7;cursor:pointer;padding:5px 0;min-height:32px}.lesson-observe p,.lesson-note{font-size:11px;line-height:1.8;color:var(--bv-muted,#5c7180);margin:8px 0}.lesson-observe-actions{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.lesson-observe-actions button{font-size:11px;flex:1 1 auto;white-space:normal}.lesson-observe-actions button[data-active=true]{border-color:#80bcb9;background:#eaf7f5}.lesson-observe-actions .lesson-record-button{color:var(--bv-blue,#216b99)}
+.lesson-frequency{display:grid;grid-template-columns:1fr auto;gap:7px 10px;font-size:11px;line-height:1.5;padding:10px;background:#eef5f8;border-radius:5px;margin:10px 0}.lesson-frequency dt{color:var(--bv-muted,#5c7180)}.lesson-frequency dd{margin:0;font:12px var(--bv-mono,monospace)}.lesson-frequency-window{font:10px/1.8 var(--bv-mono,monospace);color:var(--bv-muted,#5c7180);overflow-wrap:anywhere}
+.lesson-mechanisms{display:grid;gap:7px;margin:10px 0}.lesson-mechanisms div{padding:10px 12px;background:#eef5f8;border-radius:5px;font-size:11px;line-height:1.8}.lesson-mechanisms strong{font-size:12px;display:block;color:var(--bv-ink,#173b51)}
+.lesson-records{border-top:1px solid var(--bv-line,#d5e2e9);padding:14px 0}.lesson-records>summary,.lesson-sources>summary{font-size:12px;line-height:1.8;cursor:pointer}.lesson-records>summary span{color:var(--bv-muted,#5c7180);font-size:11px;margin-left:8px}.lesson-record-card{border:1px solid var(--bv-line,#d5e2e9);background:#fff;border-radius:6px;padding:11px;margin:9px 0}.lesson-record-head{display:flex;align-items:baseline;gap:6px;justify-content:space-between}.lesson-record-head strong{font-size:12px;line-height:1.7}.lesson-record-head span{font:10px var(--bv-mono,monospace);white-space:nowrap}.lesson-record-values{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin:9px 0;font-size:11px;line-height:1.6}.lesson-record-values b{font:500 11px var(--bv-mono,monospace);margin-left:4px}.lesson-record-card .lesson-note{font-size:10px;margin-bottom:0}.lesson-record-card label{display:block;font-size:11px;color:var(--bv-muted,#5c7180);margin-top:10px}.lesson-record-card textarea{display:block;width:100%;resize:vertical;min-height:56px;max-height:180px;font-family:inherit;font-size:12px;line-height:1.7;color:var(--bv-ink,#173b51);border:1px solid var(--bv-line,#d5e2e9);border-radius:4px;padding:7px 8px;margin-top:5px;background:#fbfdfe}.lesson-empty{font-size:11px;line-height:1.8;color:var(--bv-muted,#5c7180)}
+.lesson-export-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--bv-line,#d5e2e9);padding-top:14px}.lesson-export-row>span{font-size:10px;line-height:1.7;color:var(--bv-muted,#5c7180)}.lesson-sources{font-size:11px;line-height:1.9;color:var(--bv-muted,#5c7180);padding-top:8px}.lesson-sources ul{padding-left:17px}.lesson-sources li{margin:7px 0}.lesson-sources a{color:var(--bv-blue,#216b99);text-underline-offset:3px}
+.lesson-observe-dock{position:fixed;z-index:30;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,620px);border:1px solid #b5d0da;border-bottom:0;border-radius:9px 9px 0 0;background:#f9fcfef5;backdrop-filter:blur(10px);padding:7px 12px max(8px,env(safe-area-inset-bottom));box-shadow:0 -4px 20px #173b5114;color:var(--bv-ink,#173b51)}.lesson-observe-dock>span:first-child{font-size:10px;color:var(--bv-muted,#5c7180)}.lesson-observe-dock>div{display:flex;gap:7px;margin-top:4px}.lesson-observe-dock button{min-height:42px;padding:8px 12px;font:12px "Segoe UI","Microsoft YaHei",sans-serif;border:1px solid #c9dce5;border-radius:5px;background:#fff;color:var(--bv-ink,#173b51);cursor:pointer}.lesson-observe-dock #lesson-dock-record{flex:1;background:var(--bv-teal,#008b88);border-color:var(--bv-teal,#008b88);color:#fff}.lesson-observe-dock #lesson-dock-close{padding:8px 11px;font-size:18px;line-height:1}.lesson-observe-dock #lesson-dock-status{display:block;font-size:10px;line-height:1.7;margin-top:3px;color:var(--bv-muted,#5c7180)}.lesson-observe-dock #lesson-dock-status:empty{display:none}body.lesson-is-observing{padding-bottom:96px}
+.viv-lesson [hidden],.lesson-observe-dock[hidden]{display:none!important}.viv-lesson :is(button,input,textarea,summary,a):focus-visible,.lesson-observe-dock button:focus-visible{outline:2px solid var(--bv-orange,#ce6a2b);outline-offset:3px}
+@media(min-width:600px){.lesson-body{padding:0 14px 16px}.lesson-options{grid-template-columns:1fr 1fr}.lesson-option{font-size:13px;min-height:56px}.lesson-question legend{font-size:16px}.lesson-mechanisms{grid-template-columns:1fr 1fr}.lesson-record-values{grid-template-columns:1fr 1fr 1fr}.lesson-intro{font-size:13px}.lesson-observe p,.lesson-note{font-size:12px}}
+@media(max-width:374px){.lesson-progress{display:block;margin-left:18px;font-size:10px}.lesson-option{padding:9px;gap:7px}.lesson-observe{padding-left:9px}.lesson-observe-dock{padding-left:9px;padding-right:9px}.lesson-observe-dock button{padding:8px;font-size:11px}.lesson-record-values{gap:5px 8px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.viv-lesson,.lesson-observe-dock{scroll-behavior:auto}}
+</style>
+</head><body class="browser-page">
+<main id="browser-lab" class="browser-lab">
+  <header class="browser-heading"><div><p class="browser-eyebrow">桥梁抗风 · 涡激振动</p><h1>风变了，结构怎样振动？</h1></div><span id="browser-badge" class="browser-badge">准备中</span></header>
+  <p id="browser-status" class="browser-status" role="status">正在准备浏览器内的流场计算…</p>
+
+  <section class="browser-experiment" aria-label="实时涡振实验">
+    <div class="browser-field-wrap"><canvas id="browser-field" aria-label="当前计算的涡量流场，圆柱位移按实际比例显示"></canvas><div class="browser-field-key"><span id="browser-field-name">涡量 ωD/Uref</span><span class="browser-colorbar" aria-hidden="true"></span><span id="browser-scale-label">−8　0　+8</span><span class="browser-scale-note">固定色标 · 实际位移</span></div></div>
+    <div class="browser-runbar"><button id="browser-run" class="browser-primary" disabled>开始实验</button><span id="browser-clock">t* = 0</span><span id="browser-stage">尾流将逐步发展</span></div>
+    <div class="browser-wind-control"><label for="browser-wind"><span>拖动风速 <small>U / Uref</small></span><output id="browser-wind-out">0.60</output></label><input id="browser-wind" type="range" min="0.5" max="1.5" step="0.01" value="0.6" disabled><div class="browser-range-caption"><span>低风速</span><span>实际入口 <b id="browser-actual-u">0.60</b></span><span>高风速</span></div></div>
+  </section>
+
+  <section class="browser-primary-params" aria-label="结构的常用参数">
+    <div class="browser-param"><label for="browser-fn"><span>固有频率 <small>fₙD/Uref</small></span><output id="browser-fn-out">0.180</output></label><input id="browser-fn" type="range" min="0.08" max="0.3" step="0.005" value="0.18" disabled></div>
+    <div class="browser-param"><label for="browser-zeta"><span>阻尼比 <small>ζ</small></span><output id="browser-zeta-out">1.00%</output></label><input id="browser-zeta" type="range" min="0.2" max="15" step="0.1" value="1" disabled></div>
+  </section>
+
+  <section class="browser-response" aria-label="当前结构振动">
+    <div class="browser-response-head"><h2>结构振动</h2><span>位移 y/D <strong id="browser-y">0.0000</strong></span></div>
+    <div class="browser-response-visual"><div class="browser-structure-wrap"><canvas id="browser-structure" aria-label="由真实位移驱动的弹性支承结构示意，放大倍数另标"></canvas><p id="browser-motion-scale">结构示意 · 位移 ×10</p></div><div class="browser-motion-wrap"><canvas id="browser-motion" aria-label="最近一段计算时间的真实结构位移曲线"></canvas></div></div>
+    <p id="browser-response-note" class="browser-note">初始流场需要发展，响应会随计算逐步建立。</p>
+  </section>
+
+  <details id="browser-more" class="browser-more"><summary>更多观察与设置<span>固定结构 · 质量 · 流场 · 导出</span></summary><div class="browser-more-body">
+    <section class="browser-extra-section"><h2>结构支承与质量阻尼</h2><div class="browser-segment" role="group" aria-label="选择结构支承"><button id="browser-free" aria-pressed="true" disabled>弹性支承</button><button id="browser-fixed" aria-pressed="false" disabled>固定结构</button></div><p id="browser-support-note" class="browser-note">流体升力推动结构，结构运动反馈给流场。</p>
+      <div class="browser-param"><label for="browser-mass"><span>质量比 m*</span><output id="browser-mass-out">10</output></label><input id="browser-mass" type="range" min="10" max="60" step="1" value="10" disabled></div>
+      <div class="browser-param"><label for="browser-sc"><span>按 Scruton 数调阻尼</span><output id="browser-sc-out">0.987</output></label><input id="browser-sc" type="range" min="0.197392" max="14.804407" step="0.001" value="0.98696" disabled></div>
+      <p class="browser-note">Sc = π²m*ζ。调 Sc 会联动阻尼比；改变质量时保持固有频率，刚度和阻尼系数随之调整。保持风速、等待响应建立，再比较阻尼的影响。</p>
+      <dl class="browser-values"><dt>约化风速 U/(fₙD)</dt><dd id="browser-ur">—</dd><dt>质量 m/(ρD²)</dt><dd id="browser-m">—</dd><dt>刚度 k/(ρUref²)</dt><dd id="browser-k">—</dd><dt>阻尼 c/(ρUrefD)</dt><dd id="browser-c">—</dd><dt>雷诺数 Re</dt><dd id="browser-re">—</dd></dl>
+      <p class="browser-equation">m ÿ + c ẏ + k y = F<sub>L,CFD</sub></p>
+    </section>
+    <section class="browser-extra-section"><h2>观察流场</h2><div class="browser-select-row"><label>着色<select id="browser-field-mode"><option value="vorticity">涡量</option><option value="velocity">速度大小</option><option value="pressure">流场压力</option><option value="surface">圆柱表面 Cp</option></select></label><label>配色<select id="browser-theme"><option value="dark">暗色</option><option value="light">明色</option></select></label></div>
+      <p id="browser-field-note" class="browser-note">随体流场转换为实验室视图，圆柱按真实位移显示。颜色由流体网格值插值；结构近景的放大不作用于流场。</p>
+      <article id="browser-surface-card" hidden><h3>此刻的周向压力系数</h3><canvas id="browser-cp" aria-label="当前圆柱表面压力系数随周向角变化"></canvas><p id="browser-cp-note" class="browser-note"></p></article>
+    </section>
+    <details id="browser-history-details" class="browser-inner-details"><summary>查看风速、升力与频率</summary><div class="browser-chart-grid"><article><h3>入口风速</h3><canvas id="browser-wind-history"></canvas></article><article><h3>升力系数</h3><canvas id="browser-lift-history"></canvas></article></div><p id="browser-frequency-note" class="browser-note">频率需要足够长的时程才能估计。StU/D 只作参考，不是施加的正弦荷载。</p></details>
+    <section class="browser-extra-section"><h2>保留这次实验</h2><div class="browser-action-row"><button id="browser-export" disabled>导出实验 JSON</button><button id="browser-export-csv" disabled>导出时程 CSV</button><button id="browser-reset" disabled>重新开始</button></div><p class="browser-note">重新开始会清空这次流场与时程。调风速和结构参数会保留当前状态。</p></section>
+    <details class="browser-inner-details"><summary>计算方法与适用范围</summary><div class="browser-method"><p id="browser-method-description">浏览器在当前设备上逐步计算二维低雷诺数流动与横向单自由度结构响应；手机性能会影响计算速度。它是一项教学实验，尚不能替代工程收敛分析。</p><p>fₙ 与 ζ 控制结构响应。质量比 m*=m/(ρπD²/4)，本页 Scruton 数采用 Sc=4πmζ/(ρD²)=π²m*ζ。刚度 k=m(2πfₙ)²，阻尼系数 c=2ζm(2πfₙ)。参数切换后会产生瞬态，不能立即当作稳态结果。</p><p id="browser-method-field">流场显示只使用本次现场计算结果；不载入预计算工况。采用随圆柱平移的均匀附体网格及横向周期边界；画面将当前场转换到实验室坐标显示，圆柱按实际位移运动。本页不显示局部变形网格。局部 ALE 动网格与更多验证在教师进阶页。</p><p id="browser-method-pressure">瞬态 Cp 使用当前入口风速的动压作分母。表面取样和静压基准见压力图说明，低分辨率压力结果用于观察趋势。</p><p id="browser-performance">计算速度测量中。</p></div></details>
+  </div></details>
+  <details id="viv-lesson" class="viv-lesson">
+  <summary><span>课堂练习 · 用观察回答四题</span><span id="lesson-progress" class="lesson-progress">已提交 0 / 4</span></summary>
+  <div class="lesson-body">
+    <p class="lesson-intro">先试一试，再选择答案。每次调参都沿用当前流场；保持一段时间，记录后再比较。</p>
+    <div id="lesson-questions"></div>
+    <details id="lesson-records" class="lesson-records">
+      <summary>我的观察记录 <span id="lesson-record-count">0 条</span></summary>
+      <p class="lesson-note">记录取自点击时的计算结果。幅值是最近最多 40 t* 内位移的半峰峰值，不能直接当作稳态振幅。频率单位为 fD/Uref，时间单位为 tUref/D。</p>
+      <div id="lesson-record-list"><p class="lesson-empty">观察时点“记录当前观察”，把不同风速或阻尼下的读数留在这里。</p></div>
+    </details>
+    <div class="lesson-export-row"><button id="lesson-export" type="button" disabled>导出作答与观察</button><span>只保存在本页，不上传；刷新前可导出。</span></div>
+    <p id="lesson-status" class="lesson-note" role="status"></p>
+    <details class="lesson-sources"><summary>题目条件与概念依据</summary>
+      <p>本页的二维圆柱计算用于观察涡激振动。颤振、抖振和扭转发散仅作概念对照，不能用当前计算验证它们。“无限增长”指线性失稳模型的发散趋势，真实结构还受非线性或破坏限制。</p>
+      <p>第 3 题按交替脱涡主频讨论，fₛ 与升力主频对应；fₛ∝U 需要断面尺寸不变、Strouhal 数近似不变，且处于锁定区外。频谱读数存在有限窗口分辨率，不会被强制调成相同数值。</p>
+      <p>第 4 题中，改变频率或提高刚度的目标是使结构避开所考察风速下的共振区。提高刚度并非在所有风速下都减振。湍流影响依赖断面、尺度和工况；本页没有可调的来流湍流模型。</p>
+      <ul><li><a href="https://www.grc.nasa.gov/www/wind/valid/lamcyl/Study1_files/Study1.html" target="_blank" rel="noopener noreferrer">NASA：低雷诺数圆柱脱涡与力的频率</a></li><li><a href="https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/05083/chap3.cfm" target="_blank" rel="noopener noreferrer">FHWA：涡激振动与质量阻尼</a></li><li><a href="https://www.sciencedirect.com/science/article/pii/S014102962101542X" target="_blank" rel="noopener noreferrer">桥梁风洞研究：湍流与阻尼对涡振的影响</a></li></ul>
+    </details>
+  </div>
+</details>
+<aside id="lesson-observe-dock" class="lesson-observe-dock" aria-label="课堂观察工具" hidden><span id="lesson-dock-context">正在观察第 1 题</span><div><button id="lesson-dock-record" type="button">记录当前观察</button><button id="lesson-dock-return" type="button">返回答题</button><button id="lesson-dock-close" type="button" aria-label="收起课堂观察工具">×</button></div><span id="lesson-dock-status" role="status"></span></aside>
+
+<footer class="browser-footer"><a href="涡振_尾涡与原始记录_进阶分析.html">教师进阶页：ALE 动网格与完整分析 <span aria-hidden="true">↗</span></a><span>浏览器现场计算 · 无须启动本机服务</span></footer>
+</main>
+
+
+<script type="application/x-viv-worker" id="browser-flow-source">/* Browser-only, stateful D2Q9 fluid/structure solver.  No stored flow or sine load.
+   The lattice translates with the cylinder: this is a body-attached coordinate
+   formulation, not a locally deforming ALE mesh.  See getMeta().method. */
+(function (root) {
+  'use strict';
+  const CX = [0, 1, 0, -1, 0, 1, -1, -1, 1];
+  const CY = [0, 0, 1, 0, -1, 1, 1, -1, -1];
+  const OP = [0, 3, 4, 1, 2, 7, 8, 5, 6];
+  const W = [4 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 36, 1 / 36, 1 / 36, 1 / 36];
+  const bounded = (name, value, low, high) => {
+    value = Number(value);
+    if (!Number.isFinite(value) || value < low || value > high) throw Error(name + ' outside [' + low + ', ' + high + ']');
+    return value;
+  };
+  class BrowserFlow {
+    constructor(config = {}) {
+      this.D = Math.round(bounded('diameter', config.diameter ?? 8, 8, 20));
+      this.nx = this.D * 20; this.ny = this.D * 10; this.N = this.nx * this.ny;
+      this.xc = 4 * this.D; this.yc = 5.07 * this.D;
+      this.Uref = bounded('referenceVelocity', config.referenceVelocity ?? .07, .035, .08);
+      this.dt = this.Uref / this.D;
+      this.nuL = this.Uref * this.D / 100;
+      this.omega = 1 / (.5 + 3 * this.nuL);
+      this.U = bounded('U', config.U ?? .6, .5, 1.5); this.Utarget = this.U;
+      this.fn = bounded('fn', config.fn ?? .18, .08, .3);
+      this.zeta = bounded('zeta', config.zeta ?? .01, .002, .15);
+      this.massRatio = bounded('massRatio', config.massRatio ?? 10, 10, 60);
+      this.fixed = !!config.fixed;
+      this.seed = bounded('seed', config.seed ?? .02, 0, .08);
+      this.windSlewRate = bounded('windSlewRate', config.windSlewRate ?? .2, .01, 2);
+      this.yL = 0; this.vL = 0; this.aL = 0; this.afprev = 0;
+      this.fx = 0; this.fy = 0; this.stepCount = 0; this.pendingFrameImpulse = 0;
+      this.events = []; this.sweep = null;
+      this.f = new Float64Array(this.N * 9); this.g = new Float64Array(this.N * 9);
+      this.solid = new Uint8Array(this.N); this.pull = new Int32Array(this.N * 9);
+      this.local = new Float64Array(9); this.boundary = new Uint8Array(this.N);
+      const fluid = [], U = this.U * this.Uref;
+      for (let y = 0; y < this.ny; y++) for (let x = 0; x < this.nx; x++) {
+        const cell = y * this.nx + x, base = cell * 9;
+        this.solid[cell] = (x - this.xc) ** 2 + (y - this.yc) ** 2 <= (this.D / 2) ** 2 ? 1 : 0;
+        this.boundary[cell] = x === 0 ? 1 : x === this.nx - 1 ? 2 : 0;
+        if (!this.solid[cell]) fluid.push(cell);
+        const ux = this.solid[cell] ? 0 : U;
+        const uy = this.solid[cell] ? 0 : this.seed * U * Math.sin(2 * Math.PI * y / this.ny) * Math.exp(-(((x - this.xc) / (3 * this.D)) ** 2));
+        for (let k = 0; k < 9; k++) {
+          const dot = 3 * (CX[k] * ux + CY[k] * uy);
+          this.f[base + k] = W[k] * (1 + dot + .5 * dot * dot - 1.5 * (ux * ux + uy * uy));
+        }
+      }
+      this.g.set(this.f); this.fluid = Int32Array.from(fluid);
+      for (const cell of this.fluid) {
+        const y = Math.floor(cell / this.nx), x = cell % this.nx, base = cell * 9;
+        for (let k = 0; k < 9; k++) {
+          const sx = Math.max(0, Math.min(this.nx - 1, x - CX[k]));
+          const sy = (y - CY[k] + this.ny) % this.ny, source = sy * this.nx + sx;
+          this.pull[base + k] = this.solid[source] ? -(base + OP[k] + 1) : source * 9 + k;
+        }
+      }
+      this._coefficients();
+      this._event('initial-conditions', { seed: this.seed, U: this.U, fixed: this.fixed });
+    }
+    _coefficients() {
+      this.fnL = this.fn * this.dt;
+      this.mL = this.massRatio * Math.PI * this.D * this.D / 4;
+      const w = 2 * Math.PI * this.fnL;
+      this.kL = this.mL * w * w; this.cL = 2 * this.zeta * this.mL * w;
+    }
+    _event(type, data = {}) { this.events.push({ step: this.stepCount, t: this.stepCount * this.dt, type, ...data }); }
+    setParams(params = {}) {
+      const before = { Utarget: this.Utarget, fn: this.fn, zeta: this.zeta, massRatio: this.massRatio, fixed: this.fixed };
+      const next = {
+        U: params.U === undefined ? this.Utarget : bounded('U', params.U, .5, 1.5),
+        fn: params.fn === undefined ? this.fn : bounded('fn', params.fn, .08, .3),
+        zeta: params.zeta === undefined ? this.zeta : bounded('zeta', params.zeta, .002, .15),
+        massRatio: params.massRatio === undefined ? this.massRatio : bounded('massRatio', params.massRatio, 10, 60)
+      };
+      this.Utarget = next.U; this.fn = next.fn; this.zeta = next.zeta; this.massRatio = next.massRatio;
+      if (params.U !== undefined) this.sweep = null;
+      this._coefficients();
+      if (params.fixed !== undefined && !!params.fixed !== this.fixed) {
+        this.fixed = !!params.fixed;
+        if (this.fixed) {
+          this.pendingFrameImpulse = this.vL;
+          this._event('constraint-impulse', { impulseY: -this.mL * this.vL, lockedY: this.yL / this.D });
+          this.vL = 0; this.aL = 0;
+        }
+      }
+      this.aL = this.fixed ? 0 : (this.fy - this.cL * this.vL - this.kL * this.yL) / this.mL;
+      if (params.sweep) {
+        const s = params.sweep;
+        this.sweep = { start: bounded('sweep start', s.start ?? this.U, .5, 1.5), end: bounded('sweep end', s.end ?? 1.5, .5, 1.5),
+          hold: bounded('hold', s.hold ?? 30, 0, 300), duration: bounded('duration', s.duration ?? 100, 10, 600), startedAt: this.stepCount * this.dt };
+      }
+      this._event('parameters', { before, after: { ...next, fixed: this.fixed }, sweep: this.sweep });
+      return this.scalar();
+    }
+    _stepFlow(U, Vboundary, aframe, previous = this.afprev) {
+      const f = this.f, g = this.g, local = this.local, pull = this.pull, omega = this.omega;
+      const correction = .5 * (aframe - previous); let fx = 0, fy = 0;
+      for (const cell of this.fluid) {
+        const base = cell * 9;
+        let rlocal = 0;
+        for (let k = 0; k < 9; k++) {
+          const source = pull[base + k];
+          const value = source < 0 ? f[-source - 1] : f[source];
+          local[k] = value; rlocal += value;
+          if (source < 0) { fx -= 2 * value * CX[k]; fy -= 2 * value * CY[k]; }
+        }
+        if (correction !== 0) for (let k = 0; k < 9; k++) local[k] += 3 * W[k] * rlocal * CY[k] * correction;
+        const boundary = this.boundary[cell];
+        if (boundary) {
+          const adjacent = base + (boundary === 1 ? 9 : -9);
+          let rp = 0, up = 0, vp = 0;
+          for (let k = 0; k < 9; k++) { const z = f[adjacent + k]; rp += z; up += z * CX[k]; vp += z * CY[k]; }
+          up /= rp; vp /= rp;
+          const ub = boundary === 1 ? U : up;
+          const vb = boundary === 1 ? Vboundary - .5 * aframe : vp + correction;
+          const rb = boundary === 1 ? rp : 1;
+          for (let k = 0; k < 9; k++) {
+            const dp = 3 * (CX[k] * up + CY[k] * vp), db = 3 * (CX[k] * ub + CY[k] * vb);
+            const ep = W[k] * rp * (1 + dp + .5 * dp * dp - 1.5 * (up * up + vp * vp));
+            const eb = W[k] * rb * (1 + db + .5 * db * db - 1.5 * (ub * ub + vb * vb));
+            local[k] = eb + f[adjacent + k] - ep;
+          }
+        }
+        let rho = 0, ux = 0, uy = 0;
+        for (let k = 0; k < 9; k++) { const z = local[k]; rho += z; ux += z * CX[k]; uy += z * CY[k]; }
+        ux /= rho; uy = uy / rho + .5 * aframe;
+        const speed2 = ux * ux + uy * uy;
+        for (let k = 0; k < 9; k++) {
+          const dot = CX[k] * ux + CY[k] * uy, cu = 3 * dot;
+          const eq = W[k] * rho * (1 + cu + .5 * cu * cu - 1.5 * speed2);
+          const source = W[k] * (1 - .5 * omega) * rho * aframe * (3 * (CY[k] - uy) + 9 * dot * CY[k]);
+          g[base + k] = local[k] + omega * (eq - local[k]) + source;
+        }
+      }
+      this.f = g; this.g = f; this.fx = fx; this.fy = fy;
+      return [fx, fy];
+    }
+    _oneStep() {
+      if (this.sweep) {
+        const s = this.sweep, elapsed = this.stepCount * this.dt - s.startedAt;
+        this.Utarget = s.start + (s.end - s.start) * Math.max(0, Math.min(1, (elapsed - s.hold) / s.duration));
+      }
+      const delta = this.windSlewRate * this.dt;
+      this.U += Math.max(-delta, Math.min(delta, this.Utarget - this.U));
+      let dv = 0;
+      if (!this.fixed) {
+        dv = (this.aL - .5 * this.kL / this.mL * this.vL) / (1 + .5 * this.cL / this.mL + .25 * this.kL / this.mL);
+        this.yL += this.vL + .5 * dv; this.vL += dv;
+      }
+      const aframe = -dv + this.pendingFrameImpulse;
+      this.pendingFrameImpulse = 0;
+      this._stepFlow(this.U * this.Uref, -this.vL, aframe, this.afprev);
+      this.aL = this.fixed ? 0 : (this.fy - this.cL * this.vL - this.kL * this.yL) / this.mL;
+      this.afprev = aframe; this.stepCount++;
+      if (!Number.isFinite(this.yL + this.fx + this.fy) || Math.abs(this.yL) > this.D * 3 || Math.abs(this.vL) > .3) throw Error('Fluid/structure stability limit; pause and reset with gentler parameters.');
+    }
+    advance(steps = 1) {
+      steps = Math.max(0, Math.min(1000000, Math.floor(steps)));
+      for (let i = 0; i < steps; i++) this._oneStep();
+      return this.scalar();
+    }
+    step(U) { if (U !== undefined) this.Utarget = bounded('U', U, .5, 1.5); return this.advance(1); }
+    _macro(cell) {
+      const base = cell * 9; let rho = 0, ux = 0, uy = 0;
+      for (let k = 0; k < 9; k++) { const z = this.f[base + k]; rho += z; ux += z * CX[k]; uy += z * CY[k]; }
+      return [rho, ux / rho, uy / rho - .5 * this.afprev];
+    }
+    scalar() {
+      const mass = this.mL / (this.D * this.D), wn = 2 * Math.PI * this.fn;
+      const probeCell = Math.round(this.yc + .5 * this.D) * this.nx + Math.round(this.xc + 3 * this.D);
+      const probe = this._macro(probeCell);
+      return { step: this.stepCount, t: this.stepCount * this.dt, dt: this.dt, U: this.U, Utarget: this.Utarget, Re: 100 * this.U,
+        fn: this.fn, zeta: this.zeta, massRatio: this.massRatio, mass, k: mass * wn * wn, c: 2 * this.zeta * mass * wn,
+        Sc: Math.PI ** 2 * this.massRatio * this.zeta, fixed: this.fixed, y: this.yL / this.D, v: this.vL / this.Uref,
+        a: this.aL * this.D / (this.Uref * this.Uref), lift: this.fy / (this.Uref * this.Uref * this.D), drag: this.fx / (this.Uref * this.Uref * this.D),
+        CL: this.fy / (.5 * (this.U * this.Uref) ** 2 * this.D), CD: this.fx / (.5 * (this.U * this.Uref) ** 2 * this.D),
+        probeV: (probe[2] + this.vL + this.pendingFrameImpulse) / this.Uref,
+        probePosition: [(probeCell % this.nx - this.xc) / this.D, (Math.floor(probeCell / this.nx) - this.yc) / this.D],
+        probeRequestedPosition: [3, .5], probeFrame: 'body-attached nearest lattice node',
+        pendingBoundaryImpulse: this.pendingFrameImpulse !== 0, sweep: this.sweep ? { ...this.sweep } : null };
+    }
+    snapshot(includeFields = true) {
+      const out = { ...this.scalar(), events: this.events.slice(), mode: 'live-browser-CFD' };
+      if (!includeFields) return out;
+      const rho = new Float32Array(this.N), u = new Float32Array(this.N), v = new Float32Array(this.N), relativeV = new Float32Array(this.N);
+      const pressure = new Float32Array(this.N), vorticity = new Float32Array(this.N);
+      let minRho = Infinity, maxRho = -Infinity, maxSpeed = 0, sumRho = 0, count = 0, inletPressure = 0;
+      for (let cell = 0; cell < this.N; cell++) {
+        const m = this._macro(cell); rho[cell] = m[0];
+        if (!this.solid[cell]) {
+          u[cell] = m[1] / this.Uref; relativeV[cell] = m[2] / this.Uref;
+          v[cell] = (m[2] + this.vL + this.pendingFrameImpulse) / this.Uref;
+          minRho = Math.min(minRho, m[0]); maxRho = Math.max(maxRho, m[0]); maxSpeed = Math.max(maxSpeed, Math.hypot(m[1], m[2])); sumRho += m[0]; count++;
+        } else v[cell] = this.vL / this.Uref;
+        pressure[cell] = (m[0] - 1) / (3 * this.Uref * this.Uref);
+        if (cell % this.nx === 0) inletPressure += pressure[cell] / this.ny;
+      }
+      for (let y = 0; y < this.ny; y++) for (let x = 1; x < this.nx - 1; x++) {
+        const cell = y * this.nx + x;
+        if (this.solid[cell]) continue;
+        const ym = ((y - 1 + this.ny) % this.ny) * this.nx + x, yp = ((y + 1) % this.ny) * this.nx + x;
+        vorticity[cell] = .5 * this.D * (relativeV[cell + 1] - relativeV[cell - 1] - u[yp] + u[ym]);
+      }
+      if (!Number.isFinite(minRho + maxRho) || minRho < .6 || maxRho > 1.4) throw Error('LBM density stability limit reached; reduce numerical Mach number or reset.');
+      out.field = { width: this.nx, height: this.ny, bounds: [-this.xc / this.D, (this.nx - 1 - this.xc) / this.D, -this.yc / this.D, (this.ny - 1 - this.yc) / this.D],
+        u, v, vorticity, pressure, solid: this.solid.slice(), coordinateFrame: 'body-attached', row0At: 'yMin' };
+      out.diagnostics = { densityMin: minRho, densityMax: maxRho, densityMean: sumRho / count, maxRelativeMach: maxSpeed * Math.sqrt(3),
+        inletMach: this.U * this.Uref * Math.sqrt(3), fluidCells: this.fluid.length, tau: 1 / this.omega, fieldFinite: true };
+      const thetaDegrees = [], Cp = [], surfacePressure = [], sampleCellIds = [];
+      for (let theta = 0; theta < 360; theta += 15) {
+        const a = theta * Math.PI / 180, radius = this.D / 2 + 1.2;
+        const x = Math.round(this.xc - radius * Math.cos(a)), y = Math.round(this.yc + radius * Math.sin(a)), cell = y * this.nx + x;
+        thetaDegrees.push(theta); surfacePressure.push(pressure[cell]); Cp.push((pressure[cell] - inletPressure) / (.5 * this.U * this.U)); sampleCellIds.push(cell);
+      }
+      out.surfacePressure = { thetaDegrees, Cp, pressure: surfacePressure, sampleCellIds, pRef: inletPressure, dynamicPressure: .5 * this.U * this.U,
+        sampling: 'nearest outer-fluid lattice nodes about 1.2 lattice spacings beyond radius; not resolved wall traction', angleConvention: '0 windward,90 upper,180 leeward,270 lower' };
+      return out;
+    }
+    getMeta() {
+      return { mode: 'live-browser-CFD', solver: 'D2Q9 BGK + Guo inertial source + momentum exchange + implicit-midpoint SDOF',
+        method: 'Uniform body-attached lattice, not locally deforming ALE; transverse-periodic boundary; inlet/outlet non-equilibrium extrapolation',
+        D: 1, Uref: 1, rho: 1, nu: .01, dt: this.dt, nx: this.nx, ny: this.ny, diameterLattice: this.D,
+        referenceVelocityLattice: this.Uref, viscosityLattice: this.nuL, tau: 1 / this.omega,
+        units: 'Fixed common scales D=1,Uref=1,rho=1; wind edits do not rescale time or frequency',
+        force: 'Actual stationary-link momentum exchange in translating coordinates; one lattice-step coupling lag; no displaced-fluid correction',
+        limitations: ['Coarse educational low-Re cylinder model, not converged engineering prediction', 'Weakly compressible LBM, low-Mach accuracy limitation', 'No actual locally deforming mesh in this browser mode', 'Probe fixed relative to cylinder; surface pressure uses coarse exterior-node samples'],
+        seed: this.seed, windSlewRate: this.windSlewRate,
+        limits: { U: [.5, 1.5], fn: [.08, .3], zeta: [.002, .15], massRatio: [10, 60] },
+        readsPrecomputedFlow: false };
+    }
+    clone() {
+      const other = new BrowserFlow({ diameter: this.D, referenceVelocity: this.Uref, U: this.U, fn: this.fn, zeta: this.zeta, massRatio: this.massRatio, fixed: this.fixed, seed: this.seed, windSlewRate: this.windSlewRate });
+      other.f.set(this.f); other.g.set(this.g);
+      for (const key of ['Utarget', 'yL', 'vL', 'aL', 'afprev', 'fx', 'fy', 'stepCount', 'pendingFrameImpulse']) other[key] = this[key];
+      other.events = this.events.map(e => ({ ...e })); other.sweep = this.sweep ? { ...this.sweep } : null;
+      return other;
+    }
+  }
+  root.BrowserFlow = BrowserFlow;
+  if (typeof module !== 'undefined' && module.exports) module.exports = { BrowserFlow, CX, CY, OP, W };
+})(typeof self !== 'undefined' ? self : globalThis);
+</script>
+<script type="application/x-viv-worker" id="browser-worker-source">/* Real browser-side CFD worker. Can also be concatenated after browser-flow.js. */
+if (!self.BrowserFlow) importScripts('browser-flow.js');
+(function () {
+  'use strict';
+  let simulation = null, running = false, timer = null, generation = 0, lastPublish = 0, records = [], computeSeconds = 0;
+  function transferList(snapshot) { return snapshot.field ? Object.values(snapshot.field).filter(x => ArrayBuffer.isView(x)).map(x => x.buffer) : []; }
+  function publish(type = 'frame') {
+    const snapshot = simulation.snapshot(true), history = records; records = [];
+    const message = { type, snapshot, history, running, meta: simulation.getMeta(), performance: { computeSeconds, simulatedTime: snapshot.t, speedRatio: computeSeconds ? snapshot.t / computeSeconds : 0 } };
+    self.postMessage(message, transferList(snapshot)); lastPublish = performance.now();
+  }
+  function schedule() { if (running && timer === null) timer = setTimeout(tick, 0); }
+  function tick() {
+    timer = null; if (!running || !simulation) return;
+    const began = performance.now();
+    try {
+      do {
+        simulation.advance(5); records.push(simulation.scalar());
+      } while (performance.now() - began < 35);
+      computeSeconds += (performance.now() - began) / 1000;
+      if (performance.now() - lastPublish >= 100) publish();
+      schedule();
+    } catch (error) {
+      running = false; self.postMessage({ type: 'error', message: String(error.message || error), t: simulation.stepCount * simulation.dt });
+    }
+  }
+  self.onmessage = function (event) {
+    const message = event.data || {};
+    try {
+      if (message.type === 'init' || message.type === 'reset') {
+        running = false; if (timer !== null) clearTimeout(timer); timer = null; generation++;
+        simulation = new self.BrowserFlow(message.config || {}); records = []; computeSeconds = 0;
+        publish('ready');
+      } else if (!simulation) throw Error('Initialize the browser solver first.');
+      else if (message.type === 'control') {
+        const params = message.params || {};
+        simulation.setParams(params);
+        if (params.running !== undefined) running = !!params.running;
+        publish(); schedule();
+      } else if (message.type === 'run') { running = true; schedule(); }
+      else if (message.type === 'pause') { running = false; if (timer !== null) clearTimeout(timer); timer = null; publish(); }
+      else if (message.type === 'snapshot') publish();
+      else throw Error('Unknown worker message type.');
+    } catch (error) { self.postMessage({ type: 'error', message: String(error.message || error) }); }
+  };
+})();
+</script>
+<script>/* Actual signal peak, never selected by the structure's natural frequency. */
+(function(root) {
+  'use strict';
+  function dominantFrequency(rows, key, minimumRms = .001) {
+    const count = rows.length;
+    if (count < 64) return null;
+    const span = rows[count - 1].t - rows[0].t, dt = span / (count - 1);
+    if (span < 20 || !(dt > 0)) return null;
+    let mean = 0, covariance = 0, varianceX = 0;
+    for (let i = 0; i < count; i++) {
+      if (!Number.isFinite(rows[i][key]) || (i && Math.abs(rows[i].t - rows[i - 1].t - dt) > .001 * dt)) return null;
+      mean += rows[i][key] / count;
+    }
+    for (let i = 0; i < count; i++) { const x = i - (count - 1) / 2; covariance += x * (rows[i][key] - mean); varianceX += x * x; }
+    const slope = covariance / varianceX;
+    let n = 1; while (n < count) n *= 2;
+    const real = new Float64Array(n), imag = new Float64Array(n); let energy = 0;
+    for (let i = 0; i < count; i++) {
+      const value = rows[i][key] - mean - slope * (i - (count - 1) / 2);
+      energy += value * value;
+      real[i] = value * .5 * (1 - Math.cos(2 * Math.PI * i / (count - 1)));
+    }
+    if (Math.sqrt(energy / count) < minimumRms) return null;
+    for (let i = 1, j = 0; i < n; i++) {
+      let bit = n >> 1;
+      for (; j & bit; bit >>= 1) j ^= bit;
+      j ^= bit;
+      if (i < j) { const tmp = real[i]; real[i] = real[j]; real[j] = tmp; }
+    }
+    for (let length = 2; length <= n; length *= 2) {
+      const angle = -2 * Math.PI / length, wr = Math.cos(angle), wi = Math.sin(angle);
+      for (let start = 0; start < n; start += length) {
+        let ar = 1, ai = 0;
+        for (let j = 0; j < length / 2; j++) {
+          const a = start + j, b = a + length / 2;
+          const br = ar * real[b] - ai * imag[b], bi = ar * imag[b] + ai * real[b];
+          real[b] = real[a] - br; imag[b] = imag[a] - bi; real[a] += br; imag[a] += bi;
+          const next = ar * wr - ai * wi; ai = ar * wi + ai * wr; ar = next;
+        }
+      }
+    }
+    let peak = 1, power = 0;
+    for (let i = 1; i <= n / 2; i++) {
+      const p = real[i] * real[i] + imag[i] * imag[i];
+      if (p > power) { power = p; peak = i; }
+    }
+    const frequency = peak / (n * dt);
+    if (frequency * span < 2.5) return null;
+    return { frequency, resolution: 1 / (count * dt), windowStart: rows[0].t, windowEnd: rows[count - 1].t,
+      method: 'linear detrend, Hann window, global non-DC FFT peak; zero padding does not improve physical resolution', samples: count };
+  }
+  root.VIVSpectrum = { dominantFrequency };
+  if (typeof module !== 'undefined' && module.exports) module.exports = root.VIVSpectrum;
+})(typeof self !== 'undefined' ? self : globalThis);
+</script><script>(function () {
+  'use strict';
+  const listeners = new Set();
+  const state = { ready: false, running: false, error: null, meta: null, snapshot: null, history: [],
+    parameters: { U: .6, fn: .18, zeta: .01, massRatio: 10, fixed: false },
+    performance: { speedRatio: 0 }, sessionId: 'browser-' + Date.now() };
+  let worker, workerURL, sourceText, desiredRunning = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let hiddenPaused = false, resetting = false, lastWall = 0, lastTime = 0, lastEstimate = -Infinity;
+  let frequencyStart = 0;
+  let frequencies = { fLift: null, fProbe: null, fY: null };
+  const notify = () => listeners.forEach(fn => fn(state));
+  const send = message => { if (worker) worker.postMessage(message); };
+  function fail(error) {
+    state.error = sourceText ? error.message || String(error) : '计算程序未能加载，请刷新网页重试。'; state.running = false; desiredRunning = false;
+    if (worker) worker.terminate(); worker = null; notify();
+  }
+  async function source(id, fallback) {
+    const element = document.getElementById(id);
+    if (element && element.textContent.trim()) return element.textContent;
+    const response = await fetch(element?.dataset.workerSrc || fallback);
+    if (!response.ok) throw new Error('计算程序加载失败，请刷新网页重试。');
+    return response.text();
+  }
+  function receive(data) {
+    if (data.type === 'error') { fail(new Error(data.message)); return; }
+    if (!data.snapshot) return;
+    if (resetting && data.type !== 'ready') return;
+    if (data.type === 'ready') {
+      resetting = false; state.ready = true; state.meta = data.meta;
+      state.history = []; lastTime = 0; lastWall = performance.now(); lastEstimate = -Infinity; frequencyStart = 0;
+      frequencies = { fLift: null, fProbe: null, fY: null };
+      state.sessionId = 'browser-' + Date.now();
+      send({ type: desiredRunning && !document.hidden ? 'run' : 'pause' });
+    }
+    const snapshot = data.snapshot;
+    if (Array.isArray(data.history)) for (const row of data.history) {
+      if (!state.history.length || row.t > state.history.at(-1).t) state.history.push(row);
+    }
+    if (snapshot.t >= lastEstimate + 2) {
+      const recent = state.history.filter(row => row.t >= Math.max(snapshot.t - 40, frequencyStart));
+      const spectrum = window.VIVSpectrum.dominantFrequency;
+      const info = { lift: spectrum(recent, 'CL'), probe: spectrum(recent, 'probeV'), y: snapshot.fixed ? null : spectrum(recent, 'y', .0002) };
+      frequencies = { fLift: info.lift?.frequency ?? null, fProbe: info.probe?.frequency ?? null, fY: info.y?.frequency ?? null, frequencyInfo: info };
+      lastEstimate = snapshot.t;
+    }
+    let min = Infinity, max = -Infinity, count = 0;
+    for (let i = state.history.length - 1; i >= 0 && state.history[i].t >= snapshot.t - 40; i--) {
+      min = Math.min(min, state.history[i].y); max = Math.max(max, state.history[i].y); count++;
+    }
+    state.snapshot = { ...snapshot, ...frequencies, fY: snapshot.fixed ? null : frequencies.fY, amplitude: count > 1 ? (max - min) / 2 : 0 };
+    const wall = performance.now(), elapsed = (wall - lastWall) / 1000;
+    if (elapsed > .2 && snapshot.t > lastTime) {
+      const rate = (snapshot.t - lastTime) / elapsed;
+      state.performance.speedRatio = state.performance.speedRatio ? .8 * state.performance.speedRatio + .2 * rate : rate;
+      lastWall = wall; lastTime = snapshot.t;
+    }
+    state.running = desiredRunning && !document.hidden;
+    notify();
+  }
+  function control(params) {
+    const allowed = ['U', 'fn', 'zeta', 'massRatio', 'fixed'];
+    const patch = Object.fromEntries(allowed.filter(k => params[k] !== undefined).map(k => [k, params[k]]));
+    const limits = { U: [.5, 1.5], fn: [.08, .3], zeta: [.002, .15], massRatio: [10, 60] };
+    for (const [key, range] of Object.entries(limits)) if (patch[key] !== undefined && (!Number.isFinite(patch[key]) || patch[key] < range[0] || patch[key] > range[1])) throw new Error('参数超出可用范围：' + key);
+    if (['fn','zeta','massRatio','fixed'].some(key => patch[key] !== undefined && patch[key] !== state.parameters[key])) {
+      frequencyStart = state.snapshot?.t || 0; lastEstimate = -Infinity;
+      frequencies = { fLift: null, fProbe: null, fY: null, frequencyInfo: null };
+      if (state.snapshot) Object.assign(state.snapshot, frequencies);
+    }
+    Object.assign(state.parameters, patch);
+    if (params.running !== undefined) desiredRunning = !!params.running;
+    if (params.reset) {
+      state.error = null; state.history = []; state.snapshot = null;
+      resetting = true; lastEstimate = -Infinity;
+      if (!worker) { state.ready = false; startWorker(); }
+      else send({ type: 'reset', config: state.parameters });
+    } else if (Object.keys(patch).length) send({ type: 'control', params: patch });
+    if (params.running !== undefined && state.ready) {
+      send({ type: desiredRunning && !document.hidden ? 'run' : 'pause' });
+      lastWall = performance.now(); lastTime = state.snapshot?.t || 0;
+    }
+    state.running = state.ready && desiredRunning && !document.hidden;
+    notify();
+  }
+  window.VIVBrowserEngine = {
+    subscribe(fn) { listeners.add(fn); fn(state); return () => listeners.delete(fn); },
+    control, getState: () => state,
+  };
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { hiddenPaused = desiredRunning; send({ type: 'pause' }); state.running = false; }
+    else if (desiredRunning && state.ready && !state.error) { send({ type: 'run' }); state.running = true; }
+    lastWall = performance.now(); lastTime = state.snapshot?.t || 0; notify();
+  });
+  window.addEventListener('pagehide', () => { send({ type: 'pause' }); });
+  window.addEventListener('pageshow', event => { if (event.persisted && desiredRunning) send({ type: 'run' }); });
+  function startWorker() {
+    if (!sourceText) return;
+      workerURL = URL.createObjectURL(new Blob([sourceText], { type: 'text/javascript' }));
+      worker = new Worker(workerURL); worker.onmessage = e => receive(e.data);
+      worker.onerror = e => fail(new Error(e.message || '浏览器计算中断，请刷新后重试。'));
+      send({ type: 'init', config: state.parameters });
+      URL.revokeObjectURL(workerURL);
+  }
+  Promise.all([source('browser-flow-source', 'browser-flow.js'), source('browser-worker-source', 'browser-worker.js')])
+    .then(parts => { sourceText = parts.join('\n'); startWorker(); }).catch(fail);
+})();
+</script><script>(function () {
+  'use strict';
+  const $ = id => document.getElementById(id), panel = $('browser-lab');
+  if (!panel) return;
+  const C = { ink: '#173b51', muted: '#5c7180', teal: '#008b88', blue: '#216b99', orange: '#ce6a2b' };
+  const controls = ['browser-run', 'browser-wind', 'browser-fn', 'browser-zeta', 'browser-mass', 'browser-sc', 'browser-free', 'browser-fixed', 'browser-reset', 'browser-export', 'browser-export-csv'];
+  const finite = Number.isFinite, fmt = (v, n = 3) => finite(v) ? v.toFixed(n) : '—';
+  const set = (id, text) => { const el = $(id); if (el.textContent !== text) el.textContent = text; };
+  const visible = el => {
+    if (document.hidden || !el.getClientRects().length) return false;
+    for (let ancestor = el; ancestor; ancestor = ancestor.parentElement) if (ancestor.hidden || (ancestor.tagName === 'DETAILS' && !ancestor.open)) return false;
+    return true;
+  };
+  const sc = p => Math.PI ** 2 * p.massRatio * p.zeta;
+  let engine, state = { ready: false, running: false, history: [], parameters: {}, error: null }, frame = null;
+  let draft = { U: .6, fn: .18, zeta: .01, massRatio: 10, fixed: false }, fieldMode = 'vorticity', theme = 'dark';
+  let dirty = true, paintTimer = null, editTimer = null, pendingEdits = {}, editingUntil = 0, lastFieldKey = '', displayScale = 10, chartDraws = 0;
+  const raster = document.createElement('canvas'), rasterCtx = raster.getContext('2d');
+  const ranges = { vorticity: [-8, 8], velocity: [0, 2.5], pressure: [-2, 2], surface: [-3, 1.5] };
+  const palettes = {
+    dark: [[63, 151, 207], [17, 34, 52], [237, 131, 91]],
+    light: [[29, 110, 171], [239, 247, 249], [204, 81, 46]]
+  };
+  function color(value, range, mode, style) {
+    const q = Math.max(0, Math.min(1, (value - range[0]) / (range[1] - range[0])));
+    const stops = mode === 'velocity' ? style === 'dark' ? [[16, 35, 56], [30, 149, 177], [251, 213, 101]] : [[240, 248, 251], [42, 154, 180], [198, 102, 34]] : palettes[style];
+    const i = q < .5 ? 0 : 1, a = q < .5 ? q * 2 : (q - .5) * 2;
+    return stops[i].map((v, j) => Math.round(v + (stops[i + 1][j] - v) * a));
+  }
+  function rangeFill(el) { el.style.setProperty('--fill', (100 * (Number(el.value) - Number(el.min)) / (Number(el.max) - Number(el.min))) + '%'); }
+  function updateLabels() {
+    set('browser-wind-out', fmt(draft.U, 2)); set('browser-fn-out', fmt(draft.fn, 3)); set('browser-zeta-out', fmt(draft.zeta * 100, 2) + '%');
+    set('browser-mass-out', fmt(draft.massRatio, 0)); set('browser-sc-out', fmt(sc(draft), 3));
+    $('browser-sc').min = String(Math.PI ** 2 * draft.massRatio * Number($('browser-zeta').min) / 100);
+    $('browser-sc').max = String(Math.PI ** 2 * draft.massRatio * Number($('browser-zeta').max) / 100);
+    $('browser-sc').value = String(sc(draft));
+    for (const [id, key, factor] of [['browser-wind', 'U', 1], ['browser-fn', 'fn', 1], ['browser-zeta', 'zeta', 100], ['browser-mass', 'massRatio', 1]]) {
+      $(id).value = String(draft[key] * factor); rangeFill($(id));
+    }
+    rangeFill($('browser-sc'));
+    $('browser-free').setAttribute('aria-pressed', String(!draft.fixed)); $('browser-fixed').setAttribute('aria-pressed', String(draft.fixed));
+    set('browser-support-note', draft.fixed ? '固定在切换时的位置；解除固定后从该位置继续响应。流场随后继续调整。' : '流体升力推动结构，结构运动反馈给流场。');
+  }
+  function applyLimits(meta) {
+    const limits = meta && meta.limits; if (!limits) return;
+    for (const [key, id, factor] of [['U', 'browser-wind', 1], ['fn', 'browser-fn', 1], ['zeta', 'browser-zeta', 100], ['massRatio', 'browser-mass', 1]]) {
+      if (!limits[key]) continue; const lim = limits[key], min = Array.isArray(lim) ? lim[0] : lim.min, max = Array.isArray(lim) ? lim[1] : lim.max;
+      if (finite(min)) $(id).min = String(min * factor); if (finite(max)) $(id).max = String(max * factor);
+    }
+  }
+  function receive(next) {
+    if (!next) return;
+    const previousFrame = frame; state = next; frame = next.snapshot || null;
+    if (frame !== previousFrame) lastFieldKey = '';
+    if (next.sessionId && panel.dataset.session !== next.sessionId) { panel.dataset.session = next.sessionId; lastFieldKey = ''; }
+    applyLimits(next.meta);
+    if (performance.now() >= editingUntil && !editTimer) {
+      const parameters = next.parameters || frame || {};
+      for (const key of ['U', 'fn', 'zeta', 'massRatio', 'fixed']) if (parameters[key] !== undefined) draft[key] = parameters[key];
+      updateLabels();
+    }
+    const ready = next.ready !== false && !!frame;
+    controls.forEach(id => { $(id).disabled = !ready || (id !== 'browser-reset' && !!next.error); });
+    set('browser-run', next.running ? '暂停' : frame && frame.t > 0 ? '继续实验' : '开始实验');
+    $('browser-run').setAttribute('aria-pressed', String(!!next.running));
+    set('browser-badge', next.error ? '已停止' : !ready ? '准备中' : next.running ? '正在计算' : '已暂停');
+    $('browser-status').dataset.error = String(!!next.error);
+    if (next.error) set('browser-status', '计算已停止：' + (next.error.message || next.error) + '。可在更多设置中重新开始。');
+    else if (!ready) set('browser-status', '正在准备浏览器内的流场计算…');
+    else set('browser-status', next.running ? (frame.t < 40 ? '初始尾流正在发展，可随时拖动风速。' : '拖动风速，继续观察同一条尾流和结构响应。') : frame.t > 0 ? '拖动风速或点继续，沿用当前流场。' : '拖动风速或点开始，让尾流逐步发展。');
+    dirty = true; scheduleDraw();
+  }
+  function send(params) {
+    if (!engine) return;
+    try { engine.control(params); } catch (error) { set('browser-status', '操作未完成：' + error.message); $('browser-status').dataset.error = 'true'; }
+  }
+  function edit(params) {
+    editingUntil = performance.now() + 500; clearTimeout(editTimer); Object.assign(pendingEdits, params);
+    editTimer = setTimeout(() => { editTimer = null; const patch = pendingEdits; pendingEdits = {}; send(patch); }, 70);
+  }
+  function prepare(canvas) {
+    const w = Math.max(1, canvas.clientWidth), h = Math.max(1, canvas.clientHeight), ratio = Math.min(devicePixelRatio || 1, 2);
+    if (canvas.width !== Math.round(w * ratio) || canvas.height !== Math.round(h * ratio)) { canvas.width = Math.round(w * ratio); canvas.height = Math.round(h * ratio); }
+    const ctx = canvas.getContext('2d'); ctx.setTransform(ratio, 0, 0, ratio, 0, 0); ctx.clearRect(0, 0, w, h); return { ctx, w, h };
+  }
+  function projection(w, h, bounds) {
+    const pad = 10, topPad = 24, bottomPad = 10;
+    const scale = Math.min(Math.max(1, w - 2 * pad) / (bounds[1] - bounds[0]), Math.max(1, h - topPad - bottomPad) / (bounds[3] - bounds[2]));
+    const width = (bounds[1] - bounds[0]) * scale, height = (bounds[3] - bounds[2]) * scale;
+    const left = (w - width) / 2, top = topPad + (h - topPad - bottomPad - height) / 2;
+    return { scale, width, height, left, top, x: x => left + (x - bounds[0]) * scale, y: y => top + (bounds[3] - y) * scale };
+  }
+  function sample(field, data, x, y) {
+    const b = field.bounds, gx = (x - b[0]) / (b[1] - b[0]) * (field.width - 1), gy = (y - b[2]) / (b[3] - b[2]) * (field.height - 1);
+    if (gx < 0 || gy < 0 || gx > field.width - 1 || gy > field.height - 1) return null;
+    const ix = Math.min(field.width - 2, Math.floor(gx)), iy = Math.min(field.height - 2, Math.floor(gy)), ax = gx - ix, ay = gy - iy;
+    const ids = [iy * field.width + ix, iy * field.width + ix + 1, (iy + 1) * field.width + ix, (iy + 1) * field.width + ix + 1];
+    const weights = [(1 - ax) * (1 - ay), ax * (1 - ay), (1 - ax) * ay, ax * ay];
+    let sum = 0, weight = 0;
+    for (let j = 0; j < 4; j++) if ((!field.solid || !field.solid[ids[j]]) && finite(data[ids[j]])) { sum += data[ids[j]] * weights[j]; weight += weights[j]; }
+    return weight > 1e-8 ? sum / weight : null;
+  }
+  function surface() {
+    if (!frame) return null;
+    const s = frame.surfacePressure;
+    if (s && (s.Cp || s.cp)) {
+      const theta = Array.from(s.thetaDegrees || s.theta || []), cp = Array.from(s.Cp || s.cp);
+      if (!theta.length || theta.length !== cp.length) return null;
+      if (theta.at(-1) < theta[0] + 359.9) { theta.push(theta[0] + 360); cp.push(cp[0]); }
+      return { theta, cp, pRef: s.pRef, source: '粗网格外侧节点近壁取样，并非精确壁面压力', definition: s.referenceDescription || s.reference || '入口截面平均静压', raw: s };
+    }
+    return null;
+  }
+  function fieldRaster(field, p, box) {
+    const width = Math.max(1, Math.ceil(p.width)), height = Math.max(1, Math.ceil(p.height));
+    raster.width = width; raster.height = height;
+    const pixels = rasterCtx.createImageData(width, height), range = ranges[fieldMode], yOffset = field.coordinateFrame === 'body-attached' ? frame.y : 0;
+    const background = theme === 'dark' ? [16, 30, 45] : [240, 247, 250], key = fieldMode === 'pressure' ? 'pressure' : 'vorticity';
+    for (let j = 0; j < height; j++) for (let i = 0; i < width; i++) {
+      const x = box[0] + (i + .5) / width * (box[1] - box[0]), yLab = box[3] - (j + .5) / height * (box[3] - box[2]), y = yLab - yOffset;
+      let value = null;
+      if (x * x + (yLab - frame.y) ** 2 >= .25) {
+        if (fieldMode === 'velocity') { const u = sample(field, field.u, x, y), v = sample(field, field.v, x, y); if (u !== null && v !== null) value = Math.hypot(u, v); }
+        else if (field[key]) value = sample(field, field[key], x, y);
+      }
+      const rgb = value === null ? background : color(value, range, fieldMode, theme), k = 4 * (j * width + i);
+      pixels.data[k] = rgb[0]; pixels.data[k + 1] = rgb[1]; pixels.data[k + 2] = rgb[2]; pixels.data[k + 3] = 255;
+    }
+    rasterCtx.putImageData(pixels, 0, 0);
+  }
+  function drawField() {
+    if (!visible($('browser-field'))) return;
+    if ($('browser-field').clientWidth < 24 || $('browser-field').clientHeight < 40) return;
+    const canvas = $('browser-field'), { ctx, w, h } = prepare(canvas), dark = theme === 'dark', ink = dark ? '#cde1ee' : C.ink;
+    ctx.fillStyle = dark ? '#101e2d' : '#f0f7fa'; ctx.fillRect(0, 0, w, h);
+    ctx.font = '10px "Segoe UI","Microsoft YaHei",sans-serif'; ctx.fillStyle = dark ? '#a9c7d9' : C.muted;
+    if (!frame || !frame.field) { ctx.textAlign = 'center'; ctx.fillText(state.error ? '等待重新开始' : '流场正在准备', w / 2, h / 2); return; }
+    const box = fieldMode === 'surface' ? [-1.6, 1.6, frame.y - 1.05, frame.y + 1.05] : [-1.5, 9.5, -2, 2];
+    const p = projection(w, h, box), field = frame.field;
+    const key = [state.sessionId, frame.step, fieldMode, theme, w, h].join(':');
+    if (fieldMode !== 'surface') {
+      if (key !== lastFieldKey) { fieldRaster(field, p, box); lastFieldKey = key; }
+      ctx.drawImage(raster, p.left, p.top, p.width, p.height);
+    }
+    ctx.save(); ctx.beginPath(); ctx.rect(p.left, p.top, p.width, p.height); ctx.clip();
+    ctx.setLineDash([3, 4]); ctx.strokeStyle = dark ? 'rgba(160,191,210,.25)' : 'rgba(80,115,135,.25)'; ctx.lineWidth = .7;
+    ctx.beginPath(); ctx.moveTo(p.x(-.9), p.y(0)); ctx.lineTo(p.x(.9), p.y(0)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(p.x(0), p.y(frame.y), .5 * p.scale, 0, 2 * Math.PI); ctx.fillStyle = '#f5fafc'; ctx.fill(); ctx.strokeStyle = dark ? '#b9d0df' : C.ink; ctx.lineWidth = 1; ctx.stroke();
+    if (fieldMode === 'surface') {
+      const s = surface();
+      if (s) for (let i = 0; i < s.theta.length - 1; i++) {
+        const a = s.theta[i] * Math.PI / 180, b = s.theta[i + 1] * Math.PI / 180, rgb = color((s.cp[i] + s.cp[i + 1]) / 2, ranges.surface, 'surface', theme);
+        ctx.beginPath(); ctx.strokeStyle = 'rgb(' + rgb.join(',') + ')'; ctx.lineWidth = 7;
+        ctx.moveTo(p.x(-.5 * Math.cos(a)), p.y(frame.y + .5 * Math.sin(a))); ctx.lineTo(p.x(-.5 * Math.cos(b)), p.y(frame.y + .5 * Math.sin(b))); ctx.stroke();
+      }
+      ctx.fillStyle = ink; ctx.font = '10px "Segoe UI","Microsoft YaHei",sans-serif'; ctx.textAlign = 'right'; ctx.fillText('0° 迎风', p.x(-.65), p.y(frame.y) + 4); ctx.textAlign = 'left'; ctx.fillText('180° 背风', p.x(.65), p.y(frame.y) + 4); ctx.textAlign = 'center'; ctx.fillText('90°', p.x(0), p.y(frame.y + .72)); ctx.fillText('270°', p.x(0), p.y(frame.y - .79));
+    }
+    ctx.restore(); ctx.fillStyle = ink; ctx.textAlign = 'left'; ctx.font = '10px "Segoe UI","Microsoft YaHei",sans-serif';
+    ctx.fillText(fieldMode === 'surface' ? '当前圆柱压力 · 瞬态' : '来流 →', 11, 16);
+    ctx.textAlign = 'right'; ctx.fillText('Re = ' + fmt(frame.Re, 0), w - 11, 16);
+    canvas.dataset.step = String(frame.step); canvas.dataset.time = String(frame.t); canvas.dataset.y = String(frame.y); canvas.dataset.coordinateFrame = 'laboratory'; canvas.dataset.sourceFrame = field.coordinateFrame || 'laboratory';
+  }
+  function line(ctx, x0, y0, x1, y1, stroke = C.ink, width = 1.4) { ctx.beginPath(); ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke(); }
+  function recentHistory(span = 40) {
+    const rows = Array.isArray(state.history) ? state.history : [];
+    const end = frame ? frame.t : 0; let start = rows.length - 1;
+    while (start > 0 && rows[start - 1].t >= end - span) start--;
+    return rows.slice(Math.max(0, start));
+  }
+  function drawStructure(rows) {
+    if (!visible($('browser-structure'))) return;
+    const { ctx, w, h } = prepare($('browser-structure')); ctx.fillStyle = '#eef5f8'; ctx.fillRect(0, 0, w, h);
+    if (!frame) return;
+    const peak = Math.max(.001, Math.abs(frame.y), ...rows.map(r => Math.abs(r.y || 0)));
+    displayScale = [10, 5, 2, 1, .5].find(factor => peak * factor * 18 < h * .23) || .25;
+    const x = w * .43, eq = h * .64, radius = 12, cy = eq - frame.y * 18 * displayScale, top = 13, bottom = cy - radius;
+    line(ctx, x - 25, top, x + 25, top);
+    if (frame.fixed) line(ctx, x, top, x, bottom);
+    else {
+      const a = x - 11, b = x + 11, mid = (top + bottom) / 2;
+      ctx.beginPath(); ctx.strokeStyle = C.blue; ctx.moveTo(a, top);
+      for (let j = 0; j < 8; j++) ctx.lineTo(a + (j % 2 ? 4 : -4), top + 5 + (bottom - top - 10) * j / 7); ctx.lineTo(a, bottom); ctx.stroke();
+      line(ctx, b, top, b, mid - 7, C.teal); line(ctx, b - 4, mid - 7, b + 4, mid - 7, C.teal); line(ctx, b - 4, mid - 7, b - 4, mid + 10, C.teal); line(ctx, b + 4, mid - 7, b + 4, mid + 10, C.teal); line(ctx, b - 4, mid + 2, b + 4, mid + 2, C.teal); line(ctx, b, mid + 2, b, bottom, C.teal);
+    }
+    ctx.setLineDash([2, 3]); line(ctx, 10, eq, w - 9, eq, '#b5c9d3', .8); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(x, cy, radius, 0, Math.PI * 2); ctx.fillStyle = 'white'; ctx.fill(); ctx.strokeStyle = C.ink; ctx.stroke();
+    ctx.font = '10px "Segoe UI","Microsoft YaHei",sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = C.ink; ctx.fillText(frame.fixed ? '固定' : 'm', x, cy + 3);
+    if (finite(frame.lift) && Math.abs(frame.lift) > 1e-9) {
+      const ax = x + 24, direction = frame.lift > 0 ? -1 : 1, end = cy + direction * 20;
+      line(ctx, ax, cy, ax, end, C.orange, 1.7); line(ctx, ax, end, ax - 3, end - direction * 5, C.orange); line(ctx, ax, end, ax + 3, end - direction * 5, C.orange);
+    }
+    set('browser-motion-scale', '结构示意 · 位移 ×' + displayScale);
+    $('browser-structure').dataset.y = String(frame.y); $('browser-structure').dataset.displacementScale = String(displayScale);
+  }
+  function plot(canvas, rows, xKey, yKey, options = {}) {
+    if (!visible(canvas)) return; chartDraws++;
+    const { ctx, w, h } = prepare(canvas), m = { l: w < 250 ? 35 : 42, r: 7, t: 10, b: 28 }, pw = w - m.l - m.r, ph = h - m.t - m.b;
+    const data = rows.filter(r => finite(r[xKey]) && finite(r[yKey]));
+    const loX = options.xMin !== undefined ? options.xMin : data.length ? data[0][xKey] : 0;
+    const hiX = options.xMax !== undefined ? options.xMax : data.length ? Math.max(loX + .1, data.at(-1)[xKey]) : 40;
+    let lo = data.length ? Infinity : -.01, hi = data.length ? -Infinity : .01;
+    for (const row of data) { lo = Math.min(lo, row[yKey]); hi = Math.max(hi, row[yKey]); }
+    if (options.symmetric) { const span = Math.max(.001, Math.abs(lo), Math.abs(hi)) * 1.12; lo = -span; hi = span; }
+    else { const pad = Math.max(.001, (hi - lo) * .12); lo -= pad; hi += pad; }
+    const x = v => m.l + (v - loX) / (hiX - loX) * pw, y = v => m.t + (hi - v) / (hi - lo) * ph;
+    ctx.font = '9px "Segoe UI","Microsoft YaHei",sans-serif'; ctx.fillStyle = C.muted;
+    for (const value of [lo, (lo + hi) / 2, hi]) { line(ctx, m.l, y(value), w - m.r, y(value), '#dce6eb', .6); ctx.textAlign = 'right'; ctx.fillText(fmt(value, Math.max(Math.abs(lo), Math.abs(hi)) < .01 ? 4 : 3), m.l - 4, y(value) + 3); }
+    if (lo < 0 && hi > 0) line(ctx, m.l, y(0), w - m.r, y(0), '#b8ced8', .7);
+    ctx.textAlign = 'left'; ctx.fillText(fmt(loX, options.angle ? 0 : 1), m.l, h - 13); ctx.textAlign = 'right'; ctx.fillText(fmt(hiX, options.angle ? 0 : 1), w - m.r, h - 13);
+    ctx.textAlign = 'center'; ctx.fillText(options.angle ? '周向角 θ / °' : '计算时间 t*', m.l + pw / 2, h - 1);
+    if (data.length > 1) {
+      ctx.save(); ctx.beginPath(); ctx.rect(m.l, m.t, pw, ph); ctx.clip(); ctx.beginPath(); ctx.strokeStyle = options.color || C.teal; ctx.lineWidth = 1.6;
+      const stride = Math.max(1, Math.floor(data.length / (w * 2)));
+      for (let i = 0; i < data.length; i += stride) { const r = data[i]; if (i) ctx.lineTo(x(r[xKey]), y(r[yKey])); else ctx.moveTo(x(r[xKey]), y(r[yKey])); }
+      const last = data.at(-1); ctx.lineTo(x(last[xKey]), y(last[yKey])); ctx.stroke(); ctx.restore();
+    } else { ctx.textAlign = 'center'; ctx.fillStyle = C.muted; ctx.fillText('等待响应建立', m.l + pw / 2, m.t + ph / 2); }
+    canvas.dataset.points = String(data.length); canvas.dataset.lastTime = String(data.length ? data.at(-1)[xKey] : 0);
+  }
+  function drawReadings(rows) {
+    if (!frame) return;
+    const p = frame, U = finite(p.U) ? p.U : draft.U;
+    set('browser-actual-u', fmt(U, 2)); set('browser-y', fmt(p.y, 4)); set('browser-clock', 't* = ' + fmt(p.t, 1));
+    set('browser-stage', p.fixed ? '结构已固定' : !state.running ? p.t > 0 ? '保持当前流场' : '等待开始计算' : p.t < 40 ? '尾流正在发展' : '观察振幅的变化');
+    set('browser-ur', fmt(U / p.fn, 3)); set('browser-m', fmt(p.mass, 3)); set('browser-k', fmt(p.k, 3)); set('browser-c', fmt(p.c, 3)); set('browser-re', fmt(p.Re, 1));
+    if (rows.length > 1) {
+      const ys = rows.map(r => r.y).filter(finite), amplitude = ys.length > 1 ? (Math.max(...ys) - Math.min(...ys)) / 2 : null;
+      set('browser-response-note', '最近一段时程的半峰峰幅值 A/D = ' + fmt(amplitude, 4) + (p.fixed ? '。统计窗可能包含固定前的运动。' : '。调参后需继续观察，响应不会立即达到稳态。'));
+    } else set('browser-response-note', '初始流场需要发展，响应会随计算逐步建立。');
+    const speed = state.performance && state.performance.speedRatio;
+    set('browser-performance', '计算时间 / 实际耗时 = ' + fmt(speed, 2) + '×；计算时间不一定与现实时间同步。');
+    if (visible($('browser-frequency-note'))) {
+      const frequency = p.frequency || {};
+      const measure = v => finite(v) ? fmt(v, 3) : '采样中';
+      set('browser-frequency-note', '最近窗口频谱主峰：尾流 ' + measure(p.fProbe !== undefined ? p.fProbe : frequency.probe) + '，升力 ' + measure(p.fLift !== undefined ? p.fLift : frequency.lift) + '；结构固有频率 ' + fmt(p.fn, 3) + '。StU/D≈' + fmt(.16 * U, 3) + ' 仅作参考。变速时估计有延迟，固定或弱响应时不报告振动频率。');
+    }
+  }
+  function draw() {
+    if (document.hidden || !visible(panel)) return;
+    const rows = recentHistory(); drawField(); drawStructure(rows); plot($('browser-motion'), rows, 't', 'y', { symmetric: true }); drawReadings(rows);
+    if (visible($('browser-wind-history'))) plot($('browser-wind-history'), state.history || [], 't', 'U', { color: C.blue });
+    if (visible($('browser-lift-history'))) plot($('browser-lift-history'), state.history || [], 't', 'CL', { color: C.orange });
+    $('browser-surface-card').hidden = fieldMode !== 'surface';
+    if (fieldMode === 'surface' && visible($('browser-cp'))) {
+      const s = surface();
+      if (s) { plot($('browser-cp'), s.theta.map((theta, i) => ({ theta, cp: s.cp[i] })), 'theta', 'cp', { angle: true, xMin: 0, xMax: 360, color: C.orange }); set('browser-cp-note', 'Cp=(p−pRef)/(½ρU(t)²)；pRef：' + s.definition + '。' + s.source + '。0°迎风，90°上方，180°背风，270°下方。颜色固定 −3～1.5，曲线保留原值。'); }
+      else { plot($('browser-cp'), [], 'theta', 'cp', { angle: true, xMin: 0, xMax: 360 }); set('browser-cp-note', '当前求解器尚未提供近壁压力取样。'); }
+    }
+    dirty = false;
+  }
+  function scheduleDraw() {
+    if (paintTimer || document.hidden) return;
+    paintTimer = setTimeout(() => { paintTimer = null; if (dirty) draw(); }, 90);
+  }
+  function updateFieldMode() {
+    fieldMode = $('browser-field-mode').value; theme = $('browser-theme').value; lastFieldKey = '';
+    const names = { vorticity: '涡量 ωD/Uref', velocity: '速度 |u|/Uref', pressure: '压力 p/(ρUref²)', surface: '表面压力系数 Cp' };
+    set('browser-field-name', names[fieldMode]); const range = ranges[fieldMode]; set('browser-scale-label', fmt(range[0], 1) + '　' + fmt(range[1], 1));
+    const stops = [range[0], (range[0] + range[1]) / 2, range[1]].map(v => 'rgb(' + color(v, range, fieldMode, theme).join(',') + ')');
+    panel.querySelector('.browser-colorbar').style.background = 'linear-gradient(90deg,' + stops.join(',') + ')';
+    const wrap = panel.querySelector('.browser-field-wrap'); wrap.style.background = theme === 'dark' ? '#101e2d' : '#f0f7fa'; wrap.style.color = theme === 'dark' ? '#bed3e1' : C.muted;
+    dirty = true; draw();
+  }
+  function download(name, blob) { const url = URL.createObjectURL(blob), link = document.createElement('a'); link.href = url; link.download = name; link.click(); setTimeout(() => URL.revokeObjectURL(url), 2000); }
+  function exportRecord(csv) {
+    const current = engine && engine.getState ? engine.getState() : state;
+    if (csv) {
+      const columns = ['step', 't', 'U', 'Re', 'y', 'v', 'a', 'CL', 'CD', 'probeV', 'fn', 'zeta', 'massRatio', 'Sc', 'fixed', 'fProbe', 'fLift', 'fY'];
+      const text = '\ufeff' + columns.join(',') + '\r\n' + (current.history || []).map(row => columns.map(key => row[key] == null ? '' : typeof row[key] === 'boolean' ? Number(row[key]) : row[key]).join(',')).join('\r\n');
+      download('VIV_browser_history.csv', new Blob([text], { type: 'text/csv;charset=utf-8' }));
+    } else {
+      const record = { schema: 'viv-browser-experiment-v1', exportedAt: new Date().toISOString(), provenance: { mode: 'browser-live-computation', readsPrecomputedFlow: false }, ...current,
+        display: { field: fieldMode, theme, range: ranges[fieldMode], coordinateFrame: 'laboratory', sourceCoordinateFrame: frame && frame.field && frame.field.coordinateFrame, interpolation: 'Bilinear interpolation of actual grid samples, with fluid weights renormalized near solid cells; velocity components before magnitude; no temporal interpolation.', structureDisplacementScale: displayScale } };
+      download('VIV_browser_experiment.json', new Blob([JSON.stringify(record, (_, value) => ArrayBuffer.isView(value) ? Array.from(value) : value, 2)], { type: 'application/json' }));
+    }
+  }
+  $('browser-run').addEventListener('click', () => send({ running: !state.running }));
+  $('browser-wind').addEventListener('input', () => { draft.U = Number($('browser-wind').value); updateLabels(); edit({ U: draft.U, running: true }); });
+  for (const [id, key, factor] of [['browser-fn', 'fn', 1], ['browser-zeta', 'zeta', .01], ['browser-mass', 'massRatio', 1]]) $(id).addEventListener('input', () => {
+    draft[key] = Number($(id).value) * factor; updateLabels(); edit({ fn: draft.fn, zeta: draft.zeta, massRatio: draft.massRatio });
+  });
+  $('browser-sc').addEventListener('input', () => { draft.zeta = Number($('browser-sc').value) / (Math.PI ** 2 * draft.massRatio); updateLabels(); edit({ zeta: draft.zeta }); });
+  for (const [id, fixed] of [['browser-free', false], ['browser-fixed', true]]) $(id).addEventListener('click', () => { draft.fixed = fixed; editingUntil = performance.now() + 500; updateLabels(); send({ fixed }); });
+  $('browser-reset').addEventListener('click', () => { clearTimeout(editTimer); editTimer = null; pendingEdits = {}; lastFieldKey = ''; send({ reset: true, running: false }); });
+  $('browser-field-mode').addEventListener('change', updateFieldMode); $('browser-theme').addEventListener('change', updateFieldMode);
+  $('browser-export').addEventListener('click', () => exportRecord(false)); $('browser-export-csv').addEventListener('click', () => exportRecord(true));
+  panel.querySelectorAll('details').forEach(el => el.addEventListener('toggle', () => { dirty = true; scheduleDraw(); }));
+  window.addEventListener('resize', () => { lastFieldKey = ''; dirty = true; draw(); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { dirty = true; scheduleDraw(); } });
+  window.VIVBrowserView = { draw: () => { dirty = true; draw(); }, getState: () => ({ ready: state.ready, running: state.running, error: state.error, sessionId: state.sessionId, field: fieldMode, theme, draft: { ...draft, Sc: sc(draft) }, historyLength: (state.history || []).length, current: frame ? { step: frame.step, t: frame.t, y: frame.y, U: frame.U, fn: frame.fn, zeta: frame.zeta, massRatio: frame.massRatio, Sc: frame.Sc, fixed: frame.fixed } : null, structureDisplacementScale: displayScale, chartDraws, advancedOpen: $('browser-more').open, fieldShape: frame && frame.field ? [frame.field.width, frame.field.height] : null }) };
+  function initialize() {
+    engine = window.VIVBrowserEngine;
+    if (!engine || typeof engine.subscribe !== 'function') { set('browser-status', '计算模块尚未加载，请刷新页面后重试。'); $('browser-status').dataset.error = 'true'; return; }
+    engine.subscribe(receive); if (engine.getState) receive(engine.getState());
+  }
+  updateLabels(); draw(); initialize();
+})();
+</script><script>(function () {
+  'use strict';
+  const $ = id => document.getElementById(id), root = $('viv-lesson');
+  if (!root) return;
+  const engine = window.VIVBrowserEngine, finite = Number.isFinite;
+  const fmt = (value, digits = 3) => finite(value) ? value.toFixed(digits) : '—';
+  const letters = ['A', 'B', 'C', 'D'];
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const questions = [
+    {
+      id: 1, topic: '风速变大，振幅一定变大吗？',
+      title: '关于涡振的说法，正确的是：',
+      options: ['随机振动', '涡脱频率接近结构频率导致共振', '振动幅度会不断增长至发散', '风速越大，振幅越大'], correct: 1,
+      explanation: '<p>涡脱落产生交替升力，推动结构振动。当脱涡频率接近结构固有频率时，响应可能明显增强；流固耦合还可能产生频率锁定。</p><p>涡振通常表现为一定风速区间内的有限幅振动。离开这一范围后，振幅可能减小，不能只凭风速大小判断。启动后振幅正在建立，也不等于最终会发散。</p>',
+      guidance: '在弹性支承下，依次调低、中、高风速。每次保持一段时间，记录振幅与频率，再比较。1.00 是便于对照的中间风速，实际响应峰值会随固有频率和阻尼改变。',
+      actions: [['free', '弹性支承'], ['low', '低风速 0.60'], ['middle', '中间风速 1.00'], ['high', '高风速 1.50']]
+    },
+    {
+      id: 2, topic: '区分涡振与动力失稳',
+      title: '以下哪种风致效应，对应振动幅度无限增长？',
+      condition: '按超过临界条件后的线性失稳模型讨论。',
+      options: ['颤振（动力失稳）', '涡振（共振）', '抖振（随机振动）', '扭转发散（静风失稳）'], correct: 0,
+      explanation: '<p>颤振是气流与结构相互作用造成的动力失稳。超过临界条件后，线性模型中的振动幅值可持续增长。</p><p>这里的“无限增长”是理想化发散趋势；真实结构可能先受非线性限制或发生破坏。扭转发散属于静力平衡失稳，不能把静态转角增大等同于振动幅值增长。</p>',
+      guidance: '回到当前涡振实验，观察振幅建立之后是否仍持续增长。单个短时间窗不能判断失稳；当前模型只用于涡振，下面的其他机制是概念对照。',
+      actions: [['observe', '到涡振实验中观察']],
+      mechanisms: true
+    },
+    {
+      id: 3, topic: '比较涡脱落、升力与结构频率',
+      title: '涡脱落的频率 ____ 升力的频率；____ 于来流风速。',
+      condition: '按交替脱涡的主频讨论；断面尺寸固定、St 近似不变，且处于锁定区外。',
+      options: ['等于；反比', '大于；正比', '等于；正比', '小于；反比'], correct: 2,
+      explanation: '<p>在本题条件下，交替脱涡对应升力的主频；由 fₛ = St·U/D 可知，St 与 D 不变时 fₛ 与 U 成正比。</p><p>当前探针给出尾流横向速度的主频估计，不是直接计数每个涡。应保持风速，积累足够周期后比较 fₛ 与 fL；短窗、谐波与非平稳变化都可能让估计有差异。进入锁定区后，不能继续套用简单正比关系。</p>',
+      guidance: '先固定结构，分别保持较低、较高风速，观察尾流与升力的主频。随后解除固定，比较它们与固有频率。刚调完风速时频谱混合了前后状态，等待窗口更新再记录。',
+      actions: [['fixed', '固定结构'], ['low', '低风速 0.60'], ['high', '高风速 1.50'], ['free', '解除固定']],
+      frequencies: true
+    },
+    {
+      id: 4, topic: '怎样减小涡振？',
+      title: '以下哪种措施不能可靠降低涡振的幅值？',
+      condition: '本题中，C、D 均指使结构避开所考察风速下的原共振区。',
+      options: ['提高阻尼比', '降低来流湍流度', '结构频率远离涡脱频率区间', '提高刚度'], correct: 1,
+      explanation: '<p>降低来流湍流度不是可靠的涡振减振措施。湍流可能改变涡的组织和相关性，其影响依赖断面、尺度与工况，不能直接套用“风更平稳，振动更小”。</p><p>提高阻尼通常有利于抑制涡振。质量不变时，提高刚度会提高固有频率；只有让频率避开所考察风速下的共振区，才有预期的减振作用，也可能把易振风速区间移到别处。</p><p>本页的低雷诺数模型没有可调来流湍流度，因此不提供“调湍流验证”的按钮。</p>',
+      guidance: '先找到有明显振动的风速并保持。记录阻尼 1% 的结果，再改到 8%，等响应调整后记录；然后单独改变固有频率，判断它靠近还是远离实际升力频率。每次只改变一个量。',
+      actions: [['dampingLow', '阻尼比 1%'], ['dampingHigh', '阻尼比 8%'], ['frequencyBase', '固有频率 0.18'], ['frequencyHigh', '固有频率 0.28']]
+    }
+  ];
+  const actions = {
+    free: { fixed: false }, fixed: { fixed: true }, low: { U: .6 }, middle: { U: 1 }, high: { U: 1.5 },
+    dampingLow: { zeta: .01 }, dampingHigh: { zeta: .08 }, frequencyBase: { fn: .18 }, frequencyHigh: { fn: .28 }, observe: {}
+  };
+  const answers = questions.map(q => ({ questionId: q.id, selected: null, submitted: false, correct: null, attempts: [] }));
+  const records = [], observations = [];
+  let current = engine ? engine.getState() : null, activeQuestion = null, lastDisplay = -Infinity, recordSerial = 0;
+
+  function renderQuestion(q) {
+    const options = q.options.map((option, i) => '<label class="lesson-option"><input type="radio" name="lesson-answer-' + q.id + '" value="' + i + '"><span class="lesson-option-letter">' + letters[i] + '</span><span>' + escape(option) + '</span></label>').join('');
+    const buttons = q.actions.map(([action, label]) => '<button type="button" data-lesson-action="' + action + '" data-question="' + q.id + '" disabled>' + escape(label) + '</button>').join('');
+    return '<details id="lesson-question-' + q.id + '" class="lesson-question"' + (q.id === 1 ? ' open' : '') + '><summary><span class="lesson-question-number">' + q.id + '</span>' + q.topic + '<span id="lesson-result-' + q.id + '" class="lesson-question-result">未作答</span></summary>' +
+      '<div class="lesson-question-content"><form data-lesson-question="' + q.id + '"><fieldset><legend>' + q.title + '</legend>' + (q.condition ? '<p class="lesson-condition">' + q.condition + '</p>' : '') + '<div class="lesson-options">' + options + '</div></fieldset><div class="lesson-submit-row"><button type="submit" class="lesson-submit" disabled>提交答案</button><span class="lesson-submit-hint">提交后看解释，可重新选择</span></div><div id="lesson-feedback-' + q.id + '" class="lesson-feedback" role="status" hidden></div></form>' +
+      '<details class="lesson-observe"><summary>到实验中观察</summary><p>' + q.guidance + '</p><div class="lesson-observe-actions">' + buttons + '<button type="button" class="lesson-record-button" data-lesson-record="' + q.id + '" disabled>记录当前观察</button></div>' +
+      (q.frequencies ? '<dl class="lesson-frequency"><dt>尾流探针主频 fₛ（估计）</dt><dd id="lesson-f-probe">—</dd><dt>升力主频 fL（估计）</dt><dd id="lesson-f-lift">—</dd><dt>结构固有频率 fₙ（设定）</dt><dd id="lesson-f-natural">—</dd></dl><p id="lesson-frequency-window" class="lesson-frequency-window">等待足够时程后显示频率与窗口分辨率。</p><p>保持风速后再比较；这里显示实际信号估计，不强制同频。频率单位均为 fD/Uref。</p>' : '') +
+      (q.mechanisms ? '<details><summary>四种机制的概念对照</summary><div class="lesson-mechanisms"><div><strong>涡振 · 近频激励与流固耦合</strong>通常集中在一定风速区间，形成有限幅振动。</div><div><strong>颤振 · 动力失稳</strong>气流向结构运动输入能量，超过临界条件后线性响应可持续增长。</div><div><strong>抖振 · 随机受迫振动</strong>来流湍流产生随机脉动力，驱动结构响应。</div><div><strong>扭转发散 · 静力失稳</strong>气动力矩与扭转恢复力失去稳定平衡，主要是静态转角失稳。</div></div><p>这些是机制说明，当前圆柱 CFD 没有计算颤振、抖振或扭转发散。</p></details>' : '') + '</details></div></details>';
+  }
+  $('lesson-questions').innerHTML = questions.map(renderQuestion).join('');
+
+  function setText(id, value) { const el = $(id); if (el && el.textContent !== value) el.textContent = value; }
+  function updateProgress() {
+    const count = answers.filter(answer => answer.submitted).length;
+    setText('lesson-progress', '已提交 ' + count + ' / 4');
+    $('lesson-export').disabled = !records.length && !answers.some(answer => answer.selected !== null);
+  }
+  function ready() { return !!(current && current.ready && current.snapshot && !current.error); }
+  function updateLive(force = false) {
+    const now = performance.now();
+    if (!force && now - lastDisplay < 450) return;
+    lastDisplay = now;
+    root.querySelectorAll('[data-lesson-action],[data-lesson-record]').forEach(button => { button.disabled = !ready(); });
+    $('lesson-dock-record').disabled = !ready();
+    if (!root.open || !$('lesson-question-3').open) return;
+    const s = current && current.snapshot;
+    setText('lesson-f-probe', fmt(s?.fProbe)); setText('lesson-f-lift', fmt(s?.fLift)); setText('lesson-f-natural', fmt(s?.fn));
+    const info = s?.frequencyInfo;
+    const describe = (name, value) => value && finite(value.frequency) ? name + '窗 ' + fmt(value.windowStart, 1) + '–' + fmt(value.windowEnd, 1) + '；Δf≈' + fmt(value.resolution) : name + '：信号或时程尚不足';
+    setText('lesson-frequency-window', describe('尾流', info?.probe) + '。' + describe('升力', info?.lift) + '。');
+  }
+  root.addEventListener('toggle', () => updateLive(true), true);
+  root.addEventListener('change', event => {
+    const input = event.target;
+    if (!input.matches('input[type=radio]')) return;
+    const form = input.closest('form'), id = Number(form.dataset.lessonQuestion), answer = answers[id - 1];
+    answer.selected = Number(input.value); answer.submitted = false; answer.correct = null;
+    $('lesson-feedback-' + id).hidden = true;
+    form.querySelector('[type=submit]').disabled = false;
+    setText('lesson-result-' + id, answer.attempts.length ? '已修改，待提交' : '待提交');
+    updateProgress();
+  });
+  root.addEventListener('submit', event => {
+    const form = event.target.closest('[data-lesson-question]'); if (!form) return;
+    event.preventDefault();
+    const id = Number(form.dataset.lessonQuestion), answer = answers[id - 1], q = questions[id - 1];
+    if (answer.selected === null) return;
+    answer.submitted = true; answer.correct = answer.selected === q.correct;
+    answer.attempts.push({ selected: answer.selected, correct: answer.correct, recordedAt: new Date().toISOString(), simulationTime: current?.snapshot?.t ?? null });
+    const feedback = $('lesson-feedback-' + id);
+    feedback.dataset.correct = String(answer.correct);
+    feedback.innerHTML = '<strong>' + (answer.correct ? '选择正确' : '再对照一下：本题选 ' + letters[q.correct]) + '</strong>' + q.explanation;
+    feedback.hidden = false;
+    setText('lesson-result-' + id, answer.correct ? '已答对' : '已提交，可再选');
+    updateProgress();
+  });
+
+  function scrollTo(element) {
+    if (!element) return;
+    element.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+  function observe(id, action) {
+    if (!ready() || !engine || !Object.prototype.hasOwnProperty.call(actions, action)) return;
+    try {
+      const before = current.snapshot, requested = { ...actions[action], running: true };
+      engine.control(requested);
+      activeQuestion = id;
+      observations.push({ questionId: id, action, requested, sessionId: current.sessionId, atTime: before.t, recordedAt: new Date().toISOString() });
+      $('lesson-observe-dock').hidden = false; document.body.classList.add('lesson-is-observing');
+      setText('lesson-dock-context', '正在观察第 ' + id + ' 题 · 沿用当前流场');
+      setText('lesson-dock-status', '保持一段时间，再记录；调参后会有过渡过程。');
+      setText('lesson-status', '已进入第 ' + id + ' 题的实验观察。');
+      scrollTo($('browser-field'));
+    } catch (error) { setText('lesson-status', '参数未能调整：' + error.message); }
+  }
+  function windowStats(s) {
+    const rows = (current.history || []).filter(row => finite(row.t) && row.t >= s.t - 40 && row.t <= s.t + 1e-7 && finite(row.y));
+    if (rows.length < 2) return { samples: rows.length, start: s.t, end: s.t, duration: 0, amplitude: null, rms: null, mixedParameters: false, windRange: [s.U, s.U] };
+    let low = Infinity, high = -Infinity, sum = 0, uLow = Infinity, uHigh = -Infinity;
+    for (const row of rows) { low = Math.min(low, row.y); high = Math.max(high, row.y); sum += row.y; if (finite(row.U)) { uLow = Math.min(uLow, row.U); uHigh = Math.max(uHigh, row.U); } }
+    const mean = sum / rows.length;
+    const rms = Math.sqrt(rows.reduce((total, row) => total + (row.y - mean) ** 2, 0) / rows.length);
+    const mixed = rows.some(row => ['fn', 'zeta', 'massRatio', 'fixed'].some(key => row[key] !== undefined && row[key] !== s[key]));
+    return { samples: rows.length, start: rows[0].t, end: rows.at(-1).t, duration: rows.at(-1).t - rows[0].t,
+      amplitude: (high - low) / 2, rms, mean, mixedParameters: mixed, windRange: [uLow, uHigh] };
+  }
+  function capture(id) {
+    if (!ready()) return;
+    const s = current.snapshot, stats = windowStats(s);
+    const scalar = {};
+    for (const key of ['t', 'step', 'U', 'Re', 'fn', 'zeta', 'massRatio', 'fixed', 'y', 'v', 'CL', 'CD', 'Sc', 'k', 'c', 'fProbe', 'fLift', 'fY']) scalar[key] = s[key] ?? null;
+    const record = { id: ++recordSerial, questionId: id, recordedAt: new Date().toISOString(), sessionId: current.sessionId,
+      requestedWind: current.parameters?.U ?? null, snapshot: scalar, window: stats,
+      frequencyInfo: s.frequencyInfo ? JSON.parse(JSON.stringify(s.frequencyInfo)) : null, note: '', isSteadyState: null };
+    records.push(record); appendRecord(record); updateProgress();
+    setText('lesson-record-count', records.length + ' 条');
+    const notice = '已记录第 ' + records.length + ' 条观察（t* = ' + fmt(s.t, 1) + '）。';
+    setText('lesson-status', notice); setText('lesson-dock-status', notice);
+    return record;
+  }
+  function appendRecord(record) {
+    const list = $('lesson-record-list'); list.querySelector('.lesson-empty')?.remove();
+    const s = record.snapshot, w = record.window, card = document.createElement('article');
+    card.className = 'lesson-record-card'; card.dataset.recordId = String(record.id);
+    const windVaries = finite(w.windRange[0]) && w.windRange[1] - w.windRange[0] > .01;
+    const warnings = [];
+    if (w.duration < 35) warnings.push('窗口较短');
+    if (windVaries) warnings.push('窗口内风速变化');
+    if (w.mixedParameters) warnings.push('窗口内结构参数或支承改变');
+    const frequencyWindows = ['probe', 'lift'].map(key => {
+      const info = record.frequencyInfo?.[key];
+      return info && finite(info.frequency) ? (key === 'probe' ? '尾流' : '升力') + '测频窗 ' + fmt(info.windowStart, 1) + '–' + fmt(info.windowEnd, 1) + '，Δf≈' + fmt(info.resolution) : '';
+    }).filter(Boolean).join('；');
+    card.innerHTML = '<div class="lesson-record-head"><strong>观察 ' + record.id + ' · 第 ' + record.questionId + ' 题</strong><span>t* ' + fmt(s.t, 1) + '</span></div>' +
+      '<div class="lesson-record-values"><span>实际 U <b>' + fmt(s.U, 2) + '</b></span><span>fₙ <b>' + fmt(s.fn) + '</b></span><span>阻尼比 <b>' + fmt(s.zeta * 100, 1) + '%</b></span><span>半峰峰值 A/D <b>' + fmt(w.amplitude, 4) + '</b></span><span>尾流 fₛ <b>' + fmt(s.fProbe) + '</b></span><span>升力 fL <b>' + fmt(s.fLift) + '</b></span></div>' +
+      '<p class="lesson-note">' + (s.fixed ? '固定结构' : '弹性支承') + '；m* = ' + fmt(s.massRatio, 0) + '；位移窗口 ' + fmt(w.start, 1) + '–' + fmt(w.end, 1) + '；RMS = ' + fmt(w.rms, 4) + ' D。' + (warnings.length ? warnings.join('，') + '。' : '') + '未判定稳态。</p>' +
+      (frequencyWindows ? '<p class="lesson-note">' + frequencyWindows + '。</p>' : '') +
+      '<label for="lesson-observation-' + record.id + '">我的观察<textarea id="lesson-observation-' + record.id + '" data-observation-note="' + record.id + '" maxlength="1200" placeholder="例如：参数改变后，振动与尾流发生了什么变化？"></textarea></label>';
+    list.prepend(card);
+  }
+  root.addEventListener('input', event => {
+    const id = Number(event.target.dataset.observationNote);
+    if (id) { const record = records.find(item => item.id === id); if (record) record.note = event.target.value; }
+  });
+  root.addEventListener('click', event => {
+    const action = event.target.closest('[data-lesson-action]');
+    if (action) { observe(Number(action.dataset.question), action.dataset.lessonAction); return; }
+    const record = event.target.closest('[data-lesson-record]');
+    if (record) capture(Number(record.dataset.lessonRecord));
+  });
+  $('lesson-dock-record').addEventListener('click', () => { if (activeQuestion) capture(activeQuestion); });
+  function hideDock() { $('lesson-observe-dock').hidden = true; document.body.classList.remove('lesson-is-observing'); }
+  $('lesson-dock-close').addEventListener('click', hideDock);
+  $('lesson-dock-return').addEventListener('click', () => {
+    root.open = true;
+    const question = $('lesson-question-' + activeQuestion);
+    if (question) { question.open = true; scrollTo(question); question.querySelector('summary').focus({ preventScroll: true }); }
+    hideDock();
+  });
+  function exportedState() {
+    return {
+      schema: 'viv-classroom-lesson-v1', exportedAt: new Date().toISOString(), source: 'current browser live CFD',
+      units: { time: 't Uref / D', velocity: 'U / Uref', displacement: 'y / D', frequency: 'f D / Uref', dampingRatio: 'fraction' },
+      questions: questions.map(q => ({ id: q.id, topic: q.topic, title: q.title, condition: q.condition || '', options: q.options })),
+      answers, observations, records,
+      amplitudeDefinition: 'Half the peak-to-peak displacement over at most the latest 40 nondimensional time units. Not a steady-state amplitude claim.',
+      frequencyDefinition: 'Estimated from current signals, with finite-window resolution in each record. Missing values mean insufficient signal or record length.',
+      steadyStateAssessment: 'not performed'
+    };
+  }
+  $('lesson-export').addEventListener('click', () => {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(exportedState(), null, 2)], { type: 'application/json;charset=utf-8' }));
+    const anchor = document.createElement('a'); anchor.href = url; anchor.download = '涡振课堂_作答与观察_' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.append(anchor); anchor.click(); anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setText('lesson-status', '已导出作答、参数操作和观察记录。');
+  });
+  window.VIVLesson = { getState: () => JSON.parse(JSON.stringify({ ...exportedState(), activeQuestion, submittedCount: answers.filter(answer => answer.submitted).length })) };
+  if (engine) engine.subscribe(next => { current = next; updateLive(); });
+  else setText('lesson-status', '实验尚未准备好，题目仍可作答。');
+  updateLive(true); updateProgress();
+})();
+</script>
+</body></html>
