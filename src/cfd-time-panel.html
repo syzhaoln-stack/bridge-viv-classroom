@@ -1,0 +1,28 @@
+<section id="time-differences" class="time-lab" aria-labelledby="td-heading">
+  <div class="td-heading"><div><p class="eyebrow">先看时间，再理解 CFD</p><h2 id="td-heading">每隔 Δt 记录一次：位移 → 速度 → 加速度</h2></div><span class="badge">二维时间采样 · 可调步长</span></div>
+  <p class="td-lead">把桥梁某一点的位移记作 f(t)。计算机先存下一个个时刻的数值，再用<strong>相邻数值相减、除以时间步</strong>来近似导数。</p>
+  <div class="td-workspace">
+    <div class="td-visual">
+      <div class="td-legend"><span>实线：原函数</span><span>○：采样值</span><span>蓝 / 橙：前后两段平均速度</span><span>灰虚线：精确导数</span></div>
+      <div class="td-chart"><h3>原函数 f(t) <small>位移 / m</small></h3><svg id="td-displacement" viewBox="0 0 920 160" role="img" aria-label="位移曲线与等时间间隔采样点"></svg></div>
+      <div class="td-chart"><h3>一阶导数 f′(t) <small>速度 / (m/s)</small></h3><svg id="td-velocity" viewBox="0 0 920 160" role="img" aria-label="两个时间区间的平均速度，与精确速度比较"></svg></div>
+      <div class="td-chart"><h3>二阶导数 f″(t) <small>加速度 / (m/s²)</small></h3><svg id="td-acceleration" viewBox="0 0 920 160" role="img" aria-label="中心二阶差分得到的加速度，与精确加速度比较"></svg></div>
+      <p class="td-chart-note">三张图共用时间轴。平均速度画在各自的时间区间内；二阶差分画在中间时刻 t<sub>i</sub>。</p>
+    </div>
+    <aside class="td-controls" aria-label="时间采样设置">
+      <div class="control"><label for="td-model">选择位移函数</label><select id="td-model"><option value="quadratic">先看匀加速：f(t) = t²</option><option value="linear">再看匀速：f(t) = 2t</option><option value="sine">试试振动：f(t) = 2 sin(πt/4)</option></select><small>教学给定函数；t 以 s 计，f 以 m 计。系数含相应单位。</small></div>
+      <div class="control"><label for="td-dt"><span>时间步 Δt / s</span><output id="td-dt-value" for="td-dt">1.000</output></label><input id="td-dt" type="range" min="0.1" max="1" step="any" value="1"><small>拖动滑块，观察采样点疏密和差分读数。</small><button id="td-half" type="button">时间步减半</button></div>
+      <div class="control"><label for="td-time"><span>中间时刻 t<sub>i</sub> / s</span><output id="td-time-value" for="td-time">2.000</output></label><input id="td-time" type="range" min="1" max="7" step="any" value="2"></div>
+      <div class="td-actions"><button id="td-play" type="button" aria-pressed="false">播放采样</button><button id="td-reset" type="button">复位</button></div>
+      <div class="td-samples" aria-label="三个相邻时刻的采样值"><div><b>前一点 i−1</b><span id="td-before"></span></div><div><b>当前点 i</b><span id="td-current"></span></div><div><b>后一点 i+1</b><span id="td-after"></span></div></div>
+      <p id="td-observation" class="td-observation"></p>
+    </aside>
+  </div>
+  <div class="td-equations" aria-live="polite" aria-atomic="true">
+    <article><span class="td-number">01 · 原函数</span><h3>先记录每一帧的位移</h3><div class="td-formula">f<sub>i</sub> = f(t<sub>i</sub>)</div><p id="td-f-values" class="td-calculation"></p><p>下标 i 只是第几个采样点；相邻时刻相隔相同的 Δt。</p></article>
+    <article><span class="td-number">02 · 一阶导数</span><h3>相邻位移相减，除以 Δt</h3><div class="td-formula">f′(t<sub>i</sub>) ≈ (f<sub>i+1</sub> − f<sub>i</sub>) / Δt</div><p id="td-v-values" class="td-calculation"></p><p>右式是 [t<sub>i</sub>, t<sub>i+1</sub>] 内的<strong>平均速度 v̄<sub>+</sub></strong>，用来近似 t<sub>i</sub> 的瞬时速度；这是前向一阶差分。</p><p id="td-v-exact" class="td-comparison"></p></article>
+    <article><span class="td-number">03 · 二阶导数</span><h3>两段平均速度相减，再除以 Δt</h3><div class="td-formula">f″(t<sub>i</sub>) ≈ (f<sub>i+1</sub> − 2f<sub>i</sub> + f<sub>i−1</sub>) / Δt²</div><p id="td-a-values" class="td-calculation"></p><p>前段 v̄<sub>−</sub> = (f<sub>i</sub>−f<sub>i−1</sub>)/Δt；两段区间中点也相隔 Δt，所以 (v̄<sub>+</sub>−v̄<sub>−</sub>)/Δt 就得到上式。</p><p id="td-a-exact" class="td-comparison"></p></article>
+  </div>
+  <p class="td-condition"><strong>公式条件：</strong>屏幕读数保留三位小数，计算使用未舍入的值。以上采用均匀时间步，二阶式使用 t<sub>i</sub> 前后各一点，是中心二阶差分。函数足够光滑时，前向一阶差分的截断误差为 O(Δt)，中心二阶差分为 O(Δt²)。匀加速例子的二阶差分恰好精确；切换“振动”再缩小 Δt，更容易看出近似误差。</p>
+  <div class="td-transition"><h2>和 CFD 有什么关系？</h2><p>固定流场里的一个位置，每隔 Δt 记录当地风速 u，就能用 [u(t+Δt)−u(t)]/Δt 近似 ∂u/∂t。若 u 本身是风速，它的时间导数单位就是 m/s²；本实验先用位移，是为了借助熟悉的“速度、加速度”理解同一种差分运算。</p><p>以后只需把“相邻时刻、Δt”换成“同一时刻的相邻位置、Δx”，就得到空间差分的类似形式。<a href="#spatial-extension" id="td-open-space">理解时间差分后，再展开空间导数</a>。</p></div>
+</section>
